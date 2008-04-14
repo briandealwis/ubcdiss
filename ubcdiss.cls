@@ -125,13 +125,18 @@
 \newcommand{\@subtitle}{}
 \newcommand{\@previousdegrees}{}
 \newcommand{\@degreetitle}{%
-    \ClassError{ubcdiss}{Missing degree title}{Use \degreetitle}}
+    \ClassError{ubcdiss}{Missing degree title}{%
+	Specify \protect\degreetitle\space in your dissertation
+	metadata section.}
+    \emph{missing degree title}}
 \newcommand{\@institution}{The University of British Columbia}
 \newcommand{\f@culty}{The Faculty of Graduate Studies}
 \newcommand{\dep@rtment}{}
 \newcommand{\c@mpus}{%
-    \ClassError{ubcdiss}{Missing campus name}{Use \campus{Vancouver}}}
-
+    \ClassError{ubcdiss}{Missing campus name}{%
+	Specify \protect\campus\{\}\space in your dissertation
+	metadata section.}%
+    \emph{missing campus}}
 \newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
 \newcommand{\previousdegree}[1]{\@addto{@previousdegrees}{#1\par}}
 \newcommand{\degreetitle}[1]{\renewcommand{\@degreetitle}{#1}}
@@ -143,15 +148,18 @@
 
 % Try to have some compatibility with Forbes' class
 \newcommand{\institutionaddress}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring institutionaddress: use campus instead}}
+    \ClassWarning{ubcdiss}{Ignoring \protect\institutionaddress:
+	use \protect\campus instead}}
 \newcommand{\copyrightyear}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring copyrightyear: use date instead}}
+    \ClassWarning{ubcdiss}{Ignoring \protect\copyrightyear:
+	use \protect\date instead}}
 \newcommand{\submitdate}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring submitdate: use date instead}}
+    \ClassWarning{ubcdiss}{Ignoring \protect\submitdate:
+	use \protect\date instead}}
 \newcommand{\advisor}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring advisor}}
+    \ClassWarning{ubcdiss}{Ignoring \protect\advisor}}
 \newcommand{\advisortitle}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring advisortitle}}
+    \ClassWarning{ubcdiss}{Ignoring \protect\advisortitle}}
 
 \renewcommand{\maketitle}{%
     % For some reason FoGS thinks the title page should be page 1

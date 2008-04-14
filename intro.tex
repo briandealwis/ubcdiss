@@ -3,14 +3,18 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
+This document provides a quick set of instructions for using the
+\verb+ubcdiss+ class to write a dissertation in \LaTeX.
+
 It is far beyond the scope of this document to provide an introduction
-to LaTeX. 
-The classic reference for learning LaTeX is Leslie Lamport's
+to LaTeX.  The classic reference for learning \LaTeX is Leslie Lamport's
 book~\cite{lamport-1994-ladps}.
 \href{http://www.andy-roberts.net/misc/latex/}{Andy Roberts' online
 \LaTeX\ tutorials}\footnote{%
-    Found at \url{http://www.andy-roberts.net/misc/latex/}}
-are an excellent alternative.
+    \url{http://www.andy-roberts.net/misc/latex/}}
+also seem to be excellent.  Ignore their examples on using the
+\verb+tabular+ environment to typset tables: the \verb+booktabs+
+environment is far more preferable.
 
 It is generally a good idea to put each chapter in a separate file.
 We discuss organizational issues further in
@@ -21,6 +25,22 @@ when writing your dissertation.  We discuss version control further
 in \autoref{sec:DissertationVersionControl}.
 
 We should perhaps make reference to \ac{ANOVA} here.
+
+\begin{itemize}
+\item 66 cpl; adjusting textwidth using the geometry package
+\item how to make tables with booktabs, figures
+\item the chngpage package and adjustwidth
+\item bibtex, natbib (citep vs citet), and .bst files
+\item includegraphics
+\end{itemize}
+
+\section{Suggested Thesis Organization}
+\label{sec:SuggestedThesisOrganization}
+
+The recommended best practice for organizing large documents
+in \LaTeX\ is to 
+
+in \label{sec:DissertationVersionControl}.
 
 \endinput
 
