@@ -1,0 +1,10 @@
+*.aux
+template.dvi
+template.log
+template.blg
+template.bbl
+template.toc
+template.lo[ft]
+template.pdf
+template.brf
+template.out
