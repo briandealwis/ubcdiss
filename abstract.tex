@@ -1,18 +1,22 @@
 %!TEX root = diss.tex
 \chapter{Abstract}
 
-Put your abstract here.  It should be about 350 words or less.
-The PhD programme and the online submission system caps the abstract
-at 350 words.
+\newacro{UBC}{The University of British Columbia}
+\newacro{FoGS}[FoGS]{Faculty of Graduate Studies}
+
+At \ac{UBC}, both the \ac{FoGS} Ph.D. defence programme and the
+Library's online submission system require that abstracts to be 350
+words or less.
 
 Abstracts should generally try to avoid using acronyms.  If you
 must, use the \verb+acronym+ package's \verb+\newacro+ to define
 local versions here; these definitions will be overwritten by those
-in \verb+glossary.tex+.
+in \filename{glossary.tex}.  See the \filename{glossary.tex} file for
+examples of defining elements for a glossary.
 
 For example, the source for this page added the following definition:
 \begin{verbatim}
-   \newacro{ANOVA}{Analysis of Variance}
+    \newacro{UBC}{The University of British Columbia}
+    \newacro{FoGS}{Faculty of Graduate Studies}
 \end{verbatim}
-\newacro{ANOVA}{Analysis of Variance}
-so as to refer to \ac{ANOVA}. 
+so as to refer to `\ac{UBC}' and `\ac{FoGS}'.
