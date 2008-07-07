@@ -149,7 +149,7 @@
 % Try to have some compatibility with Forbes' class
 \newcommand{\institutionaddress}[1]{%
     \ClassWarning{ubcdiss}{Ignoring \protect\institutionaddress:
-	use \protect\campus instead}}
+	use \protect\campus\space instead}}
 \newcommand{\copyrightyear}[1]{%
     \ClassWarning{ubcdiss}{Ignoring \protect\copyrightyear:
 	use \protect\date instead}}
