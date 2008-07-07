@@ -83,51 +83,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% HYPERREF:
-%% The hyperref package provides for embedding hyperlinks into your
-%% document.  By default the table of contents, references, citations,
-%% and footnotes are hyperlinked.
-%%
-%% Generally hyperref should appear before most other packages
-
-%% The following uses most defaults, which causes hyperlinks to be
-%% surrounded by colourful boxes; the colours are only visible in
-%% PDFs and don't show up when printed:
-%\usepackage[bookmarks,bookmarksnumbered]{hyperref}
-
-%% The following disables the colourful boxes around hyperlinks.
-%\usepackage[bookmarks,bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
-
-%% The following disables all hyperlinking
-%\usepackage[draft]{hyperref}
-
-%% The following puts hyperlinks in very faint grey boxes.
-%% The `pagebackref' causes the references in the bibliography to have
-%% back-references to the citing page; `backref' puts the citing section
-%% number.
-\usepackage[bookmarks,bookmarksnumbered,%
-    citebordercolor={0.8 0.8 0.8},filebordercolor={0.8 0.8 0.8},%
-    linkbordercolor={0.8 0.8 0.8},pagebordercolor={0.8 0.8 0.8},%
-    urlbordercolor={0.8 0.8 0.8},%
-    pagebackref%
-    ]{hyperref}
-%% The following change how the the back-references text is typeset in a
-%% bibliography when `backref' or `pagebackref' are used
-% \renewcommand\backrefpagesname{\(\rightarrow\) pages}
-% \renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
-
-%% Hyperref provides a very handy command for doing cross-references:
-%% \autoref{}.  This is similar to \ref{} and \pageref{} except that
-%% it automagically puts in the *type* of reference.  For example,
-%% referencing a figure's label will put the text `Figure 3.4'.
-%% The following commands causes chapter and section references to
-%% uppercase the part name.
-\renewcommand{\chapterautorefname}{Chapter}
-\renewcommand{\sectionautorefname}{Section}
-\renewcommand{\subsectionautorefname}{Section}
-\renewcommand{\subsubsectionautorefname}{Section}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,6 +103,28 @@
 %% enumitem: support pausing and resuming enumerate environments.
 \usepackage{enumitem}
 
+%% listings: useful support for including source code listings, with
+%% optional special keyword formatting.  The \lstset{} causes
+%% the text to be typeset in a smaller sans serif font, with
+%% proportional spacing.
+\usepackage{listings}
+\lstset{basicstyle=\sffamily\scriptsize,showstringspaces=false,fontadjust}
+
+%% The acronym package provides support for defining acronyms, providing
+%% their expansion when first used, and building glossaries.  See the
+%% example in glossary.tex and the example usage throughout the example
+%% document.
+%% NOTE: to use \MakeTextLowercase in the \acsfont command below,
+%%   we *must* use the `nohyperlinks' option -- it causes errors with
+%%   hyperref otherwise.  See Section 5.2 in the ``LaTeX 2e for Class
+%%   and Package Writers Guide'' (clsguide.pdf) for details.
+\usepackage[printonlyused,nohyperlinks]{acronym}
+%% The ubcdiss.cls loads the `textcase' package which provides commands
+%% for upper-casing and lower-casing text.  The following causes
+%% the acronym package to typeset acronyms in small-caps
+%% as recommended by Bringhurst.
+\renewcommand{\acsfont}[1]{{\scshape \MakeTextLowercase{#1}}}
+
 %% color: add support for expressing colour models.  Grey can be used
 %% to great effect to emphasize other parts of a graphic or text.
 %% For a great set of examples, see E Tufte's Visual Display of
@@ -167,17 +144,6 @@
 %% We use \citeeg{} to provide examples
 \usepackage[numbers,sort&compress]{natbib}
 \newcommand{\citeeg}[1]{\citep[e.g.,][]{#1}}
-
-%% The acronym package provides support for defining acronyms, providing
-%% their expansion when first used, and building glossaries.  See the
-%% example in glossary.tex and the example usage throughout the example
-%% document.
-\usepackage[printonlyused]{acronym}
-%% The ubcdiss.cls loads the `textcase' package which provides commands
-%% for upper-casing and lower-casing text.  The following causes
-%% the acronym package to typeset acronyms in small-caps
-%% as recommended by Bringhurst.
-\renewcommand{\acsfont}[1]{{\scshape \MakeTextLowercase{#1}}}
 
 %% The titlesec package provides commands to vary how chapter and
 %% section titles are typeset.  The following uses more compact
@@ -221,6 +187,51 @@
 %% otherwise.
 %\usepackage[normalem,normalbf]{ulem}    % for \sout
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HYPERREF:
+%% The hyperref package provides for embedding hyperlinks into your
+%% document.  By default the table of contents, references, citations,
+%% and footnotes are hyperlinked.
+%%
+%% Generally hyperref should appear after most other packages
+
+%% The following uses most defaults, which causes hyperlinks to be
+%% surrounded by colourful boxes; the colours are only visible in
+%% PDFs and don't show up when printed:
+%\usepackage[bookmarks,bookmarksnumbered]{hyperref}
+
+%% The following disables the colourful boxes around hyperlinks.
+%\usepackage[bookmarks,bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
+
+%% The following disables all hyperlinking
+%\usepackage[draft]{hyperref}
+
+%% The following puts hyperlinks in very faint grey boxes.
+%% The `pagebackref' causes the references in the bibliography to have
+%% back-references to the citing page; `backref' puts the citing section
+%% number.
+\usepackage[bookmarks,bookmarksnumbered,%
+    citebordercolor={0.8 0.8 0.8},filebordercolor={0.8 0.8 0.8},%
+    linkbordercolor={0.8 0.8 0.8},pagebordercolor={0.8 0.8 0.8},%
+    urlbordercolor={0.8 0.8 0.8},%
+    pagebackref%
+    ]{hyperref}
+%% The following change how the the back-references text is typeset in a
+%% bibliography when `backref' or `pagebackref' are used
+% \renewcommand\backrefpagesname{\(\rightarrow\) pages}
+% \renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
+
+%% Hyperref provides a very handy command for doing cross-references:
+%% \autoref{}.  This is similar to \ref{} and \pageref{} except that
+%% it automagically puts in the *type* of reference.  For example,
+%% referencing a figure's label will put the text `Figure 3.4'.
+%% The following commands causes chapter and section references to
+%% uppercase the part name.
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -233,36 +244,38 @@
 % \widowpenalty=10000	% try harder to avoid widows
 % \tolerance=1000
 
+%% And include some of our own useful macros
+\input{macros}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Document meta-data
+%% Document meta-data: be sure to also change the \hypersetup information
 %%
-\title{Eating Fried Worms}
-\subtitle{Using WD-40 to make programs more expressive}
 
-\author{Costa della Monsta}
-\previousdegree{B. Basket Weaving, University of Weaving, 1991}
-\previousdegree{M. One-Handed Clapping., Wasted University, 1994}
+\title{On the use of \textsc{WD-40} as a new flavour enhancement}
+%\subtitle{If you want a subtitle}
 
+\author{Your name here}
+\previousdegree{B. Basket Weaving, University of Illustrious Arts, 1991}
+\previousdegree{M. Silly Walks, University, 1994}
+
+% What is this dissertation for?
 \degreetitle{Doctor of Philosophy}
 
 \institution{The University Of British Columbia}
-\institutionaddress{Vancouver, Canada}
 \campus{Vancouver}
 
 \faculty{The Faculty of Graduate Studies}
 \department{Basket Weaving}
-\date{April 2008}
+\date{April 2008}	% submission date
 
 %% hyperref package provides support for embedding meta-data in .PDF
 %% files
 \hypersetup{
-  pdftitle={Software Spelunking: Supporting Queries Over Integrated
-  Sources of Program Information (DRAFT: \today)},
-  pdfauthor={Brian de Alwis},
-  pdfkeywords={software development environment, software exploration}
+  pdftitle={Change this title!  (DRAFT: \today)},
+  pdfauthor={Your Name Here},
+  pdfkeywords={Your keywords here}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -271,9 +284,11 @@
 %% The document content
 %%
 
-%% LaTeX's \includeonly commands causes the \include{} to only
-%% include files if they are in the list.  This is helpful to
-%% avoid reprocessing the entire file.
+%% LaTeX's \includeonly commands causes any uses of \include{} to only
+%% include files that are in the list.  This is helpful to produce
+%% subsets of your thesis (e.g., for committee members who want to see
+%% the dissertation chapter by chapter).  It also saves time by 
+%% avoiding reprocessing the entire file.
 %\includeonly{intro,conclusions}
 %\includeonly{discussion}
 
@@ -311,7 +326,7 @@
 %    8. Glossary (optional)
 \input{glossary}	% always input, since other macros may rely on it
 
-\textspacing
+\textspacing		% begin one-half or double spacing
 
 %    9. Preface (optional)
 %   10. Acknowledgements (optional)
@@ -319,8 +334,8 @@
 
 %   11. Dedication (optional)
 
-\mainmatter
 % Body of Thesis (not all sections may apply)
+\mainmatter
 
 \acresetall	% reset all acronyms used so far
 
@@ -328,6 +343,7 @@
 \include{intro}
 
 %    2. Main body
+% Generally recommended to put each chapter into a separate file
 %\include{relatedwork}
 %\include{model}
 %\include{impl}
@@ -351,6 +367,8 @@
 
 \backmatter
 %    7. Index
+% See the makeindex package: the following page provides a quick overview
+% <http://www.image.ufl.edu/help/latex/latex_indexes.shtml>
 
 
 \end{document}
