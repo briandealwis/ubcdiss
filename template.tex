@@ -218,8 +218,8 @@
     ]{hyperref}
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used
-% \renewcommand\backrefpagesname{\(\rightarrow\) pages}
-% \renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
+\renewcommand\backrefpagesname{\(\rightarrow\) pages}
+\renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
 
 %% Hyperref provides a very handy command for doing cross-references:
 %% \autoref{}.  This is similar to \ref{} and \pageref{} except that
@@ -356,7 +356,7 @@
 %    5. Bibliography
 \begin{singlespace}
 \raggedright
-\bibliographystyle{bsdapa}
+\bibliographystyle{apalike}
 \bibliography{biblio}
 \end{singlespace}
 

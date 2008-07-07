@@ -1,22 +1,37 @@
-%!TEX root = diss.tex
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = template.tex
 \chapter{Abstract}
 
+This document provides brief instructions for using the \class{ubcdiss}
+class to write a \acs{UBC}-conformant dissertation in \LaTeX.  This
+document is itself written using the \class{ubcdiss} class and is
+intended to serve as an example of writing a dissertation in \LaTeX.
+This document has embedded \acp{URL} and is intended to be viewed
+using a computer-based \ac{PDF} reader.
+
+Suggestions for improvements should be sent to Brian de Alwis at
+\texttt{briandealwis@gmail.com}.
+
+% Note: these must also be defined in glossary.tex
 \newacro{UBC}{The University of British Columbia}
 \newacro{FoGS}[FoGS]{Faculty of Graduate Studies}
+\newacro{PDF}{Portable Document Format}
+\newacro{URL}{Uniform Resource Locator}
 
-At \ac{UBC}, both the \ac{FoGS} Ph.D. defence programme and the
-Library's online submission system require that abstracts to be 350
-words or less.
-
-Abstracts should generally try to avoid using acronyms.  If you
+Note: Abstracts should generally try to avoid using acronyms.  If you
 must, use the \verb+acronym+ package's \verb+\newacro+ to define
 local versions here; these definitions will be overwritten by those
 in \filename{glossary.tex}.  See the \filename{glossary.tex} file for
 examples of defining elements for a glossary.
-
 For example, the source for this page added the following definition:
 \begin{verbatim}
     \newacro{UBC}{The University of British Columbia}
     \newacro{FoGS}{Faculty of Graduate Studies}
+    \newacro{PDF}{Portable Document Format}
+    \newacro{URL}{Uniform Resource Locator}
 \end{verbatim}
 so as to refer to `\ac{UBC}' and `\ac{FoGS}'.
+
+Note: at \ac{UBC}, both the \ac{FoGS} Ph.D. defence programme and the
+Library's online submission system require that abstracts to be 350
+words or less.

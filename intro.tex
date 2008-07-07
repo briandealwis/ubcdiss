@@ -1,46 +1,406 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%!TEX root = diss.tex
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = template.tex
+
 \chapter{Introduction}
 \label{ch:Introduction}
 
+\begin{epigraph}
+    \emph{If I have seen farther it is by standing on the shoulders of
+    Giants.} ---~Sir Isaac Newton (1855)
+\end{epigraph}
+
 This document provides a quick set of instructions for using the
-\verb+ubcdiss+ class to write a dissertation in \LaTeX.
+\class{ubcdiss} class to write a dissertation in \LaTeX. 
+Unfortunately this document cannot provide an introduction to using
+\LaTeX.  The classic reference for learning \LaTeX\ is
+\citeauthor{lamport-1994-ladps}'s
+book~\cite{lamport-1994-ladps}.  There are also many freely-available
+tutorials online;
+\webref{http://www.andy-roberts.net/misc/latex/}{Andy Roberts' online
+    \LaTeX\ tutorials}
+seems to be excellent.
+The source code for this docment, however, is intended to serve as
+an example for creating a \LaTeX\ version of your dissertation.
 
-It is far beyond the scope of this document to provide an introduction
-to LaTeX.  The classic reference for learning \LaTeX is Leslie Lamport's
-book~\cite{lamport-1994-ladps}.
-\href{http://www.andy-roberts.net/misc/latex/}{Andy Roberts' online
-\LaTeX\ tutorials}\footnote{%
-    \url{http://www.andy-roberts.net/misc/latex/}}
-also seem to be excellent.  Ignore their examples on using the
-\verb+tabular+ environment to typset tables: the \verb+booktabs+
-environment is far more preferable.
+We start by discussing organizational issues, such as splitting
+your dissertation into multiple files, in
+\autoref{sec:SuggestedThesisOrganization}.
+We then cover the ease of managing cross-references in \LaTeX\ in
+\autoref{sec:CrossReferences}.
+We cover managing and using bibliographies with \BibTeX\ in
+\autoref{sec:BibTeX}. 
+We briefly describe typesetting attractive tables in
+\autoref{sec:TypesettingTables}.
+We briefly describe including external figures and using
+special symbols in \LaTeX\ in \autoref{sec:Graphics}.
+As it is often useful to track different versions of your dissertation,
+we discuss revision control further in
+\autoref{sec:DissertationRevisionControl}. 
+We conclude with pointers to additional sources of information in
+\autoref{sec:Conclusions}.
 
-It is generally a good idea to put each chapter in a separate file.
-We discuss organizational issues further in
-\autoref{sec:SuggestedThesisOrganization}
-
-It is also generally a good idea to use \emph{version control}
-when writing your dissertation.  We discuss version control further
-in \autoref{sec:DissertationVersionControl}.
-
-We should perhaps make reference to \ac{ANOVA} here.
-
-\begin{itemize}
-\item 66 cpl; adjusting textwidth using the geometry package
-\item how to make tables with booktabs, figures
-\item the chngpage package and adjustwidth
-\item bibtex, natbib (citep vs citet), and .bst files
-\item includegraphics
-\end{itemize}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Suggested Thesis Organization}
 \label{sec:SuggestedThesisOrganization}
 
-The recommended best practice for organizing large documents
-in \LaTeX\ is to 
+The \acs{UBC} \acf{FoGS} specifies a particular arrangement of the
+components forming a thesis.\footnote{See
+    \url{http://www.grad.ubc.ca/students/thesis/index.asp?menu=005,000,000,000}}
+This template reflects that arrangement.
 
-in \label{sec:DissertationVersionControl}.
+In terms of writing your thesis, the recommended best practice for
+organizing large documents in \LaTeX\ is to place each chapter in
+a separate file.  These chapters are then included from the main
+file through the use of \verb+\include{file}+.  A thesis might
+be described as six files such as \file{intro.tex},
+\file{relwork.tex}, \file{model.tex}, \file{eval.tex},
+\file{discuss.tex}, and \file{concl.tex}.
+
+
+\subsection{Changing Page Widths and Heights}
+
+The \class{ubcdiss} class is based on the standard \LaTeX\ \class{book}
+class that selects a line-width to carry approximately 66~characters
+per line.  This character density is claimed to have a pleasing
+appearance and also supports more rapid
+reading~\cite{bringhurst-2002-teots}.  I would recommend that you
+not change the line-widths!
+
+Some students are unfortunately saddled with misguided supervisors
+or committee members whom believe that documents should have the
+narrowest margins possible.  The \package{geometry} package is
+helpful in such cases.  Using this package is as simple as:
+\begin{lstlisting}
+    \usepackage[margin=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\end{lstlisting}
+You should check the package's documentation for more complex uses.
+
+There are occasions where it becomes necessary to make temporary
+changes to the page width, such as to accomodate a larger formula. 
+The \packagemisc{chngpage} package provides an \env{adjustwidth}
+environment that does just this.  For example:
+\begin{lstlisting}
+    % Expand left and right margins by 0.75in
+    \begin{adjustwidth}{-0.75in}{-0.75in}
+    % We may need to adjust the perceived column
+    % width for LaTeX to get with it.
+    \addtolength{\columnwidth}{1.5in}
+    \[ an extra long math formula \]
+    \end{adjustwidth}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cross-References}
+\label{sec:CrossReferences}
+
+\LaTeX\ make managing cross-references easy, and the \package{hyperref}
+package's\ \verb+\autoref+ command\footnote{%
+    The \package{hyperref} package is included by default in this
+    template.}
+makes it easier still. 
+
+A thing to be cross-referenced, such as a section, figure, or equation,
+is \emph{labelled} using a unique, user-provided identifier, defined
+using the \verb+\label+ command.  
+The thing is referenced elsewhere using the \verb+\autoref+ command.
+For example, this section was defined using:
+\begin{lstlisting}
+    \section{Cross-References}
+    \label{sec:CrossReferences}
+\end{lstlisting}
+References to this section are done as follows:
+\begin{lstlisting}
+    We then cover the ease of managing cross-references in \LaTeX\
+    in \autoref{sec:CrossReferences}.
+\end{lstlisting}
+\verb+\autoref+ takes care of determining \emph{type} of the 
+thing being referenced, so \verb+\autoref{sec:CrossReferences}+
+is replaced with the text ``\autoref{sec:CrossReferences}.''
+
+A identifer is a simple sequence of characters, numbers, digits,
+and some punctuation marks such as ``:'' and ``--''; there should
+be no spaces.  A consistent key format simiplifies remembering how
+to make references.  This document uses a prefix to indicate the
+type of the thing being referenced, such as \texttt{sec} for sections,
+\texttt{fig} for figures, \texttt{tbl} for tables, and \texttt{eqn}
+for equations.
+
+For further details on defining the text used for the thing types,
+see the \class{hyperref} documentation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Managing Bibliographies with \BibTeX}
+\label{sec:BibTeX}
+
+One of the primary benefits of using \LaTeX\ is its companion program,
+\BibTeX, for managing bibliographies and citations.  Managing
+bibliographies has three parts: (i) describing references,
+(ii)~citing references, and (iii)~formatting cited references.
+
+\subsection{Describing References}
+
+\BibTeX\ defines a standard format for recording details about a
+reference.  These references are recorded in a file with a
+\file{.bib} extension.  \BibTeX\ supports a broad range of
+references, such as books, articles, items in a conference proceedings,
+chapters, technical reports, manuals, dissertations, and unpublished
+manuscripts. 
+A reference may include attributes such as the authors,
+the title, the page numbers, the \ac{DOI}, or a \ac{URL}.  A reference
+can also be augmented with personal attributes, such as a rating,
+notes, or keywords.
+
+Each reference must be described by a unique \emph{key}.\footnote{%
+    Note that the citation keys are different from the reference
+    identifiers as described in \autoref{sec:CrossReferences}.}
+A key is a simple sequence of characters, numbers, digits, and some
+punctuation marks such as ``:'' and ``--''; there should be no spaces. 
+A consistent key format simiplifies remembering how to make references. 
+For example:
+\begin{quote}
+   \fbox{\emph{lowercased-last-name-of-first-author}} \texttt{-}
+    \fbox{\emph{year}} \texttt{-} \fbox{\emph{contracted-title}}
+\end{quote}
+Then G. Kiczales \etal's article, \emph{Aspect-Oriented Programming},
+published in 1997, would have key \texttt{kiczales-1997-aop}.
+
+An example of a \BibTeX\ \file{.bib} file is included as
+\file{biblio.bib}.  A description of the format a \file{.bib}
+file is beyond the scope of this document.  We instead encourage
+you to use one of the several reference managers that support the
+\BibTeX\ format such as
+\webref{http://jabref.sourceforge.net}{JabRef} (multiple platforms) or
+\webref{http://bibdesk.sourceforge.net}{BibDesk} (MacOS\,X only). 
+These front ends are similar to reference manages such as
+EndNote or RefWorks.
+
+
+\subsection{Citing References}
+
+Having described some references, we then need to cite them.  We
+do this using a form of the \verb+\cite+ command.  For example:
+\begin{lstlisting}
+    \citet{kiczales-1997-aop} present examples of crosscutting 
+    occurring in several languages.
+\end{lstlisting}
+When processed, the \verb+\citet+ will cause the paper's authors
+and a standardized reference to the paper to be inserted in the
+document, and will also include a formatted citation for the paper
+in the bibliography.  For example:
+\begin{quote}
+    \citet{kiczales-1997-aop} present examples of crosscutting 
+    occurring in several languages.
+\end{quote}
+There are several forms of the \verb+\cite+ command (provided
+by the \package{natbib} package); see \autoref{tbl:natbib:cite}.
+\begin{table}
+\caption{Available \texttt{cite} variants.}
+\label{tbl:natbib:cite}
+\begin{tabular}{ll}\toprule
+Variant & Result \\
+\midrule
+\verb+\citet+ & Textual citation: includes author (\eg \citet{kiczales-1997-aop}) \\
+\verb+\citet*+ & Textual citation with unabbreviated author list \\
+\verb+\citep+ & Parenthetical citation (\eg \citep{kiczales-1997-aop}) \\
+\verb+\citep*+ & Parenthetical citation with unabbreviated author list \\
+\verb+\citeauthor+ & Author only (\eg \citeauthor{kiczales-1997-aop}) \\
+\verb+\citeyear+ & Year of citation (\eg \citeyear{kiczales-1997-aop}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Formatting Cited References}
+
+\BibTeX\ separates the citing of a reference from how the cited
+reference is formatted for a bibliography, specified with the
+\verb+\bibliographystyle+ command.  There are several varieties,
+including \texttt{plainnat}, \texttt{abbrvnat}, and \texttt{unsrtnat}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Typesetting Tables}
+\label{sec:TypesettingTables}
+
+Unfortunately \citet{lamport-1994-ladps} made one grievous mistake
+in \LaTeX, the suggested manner for typesetting tables results
+in abysmally ugly abominations.  These suggestions have been
+perpetuated in most \LaTeX\ tutorials.
+Fortunately this situation is easily rectified: simply ignore the
+instructions on using horizontal and
+vertical rules (specifically the use of \verb+\hline+ and \verb+|+) and
+use the \package{booktabs} package instead.
+
+The \package{booktabs} environment produces far more professional-looking
+tables, and are the form used by most professionally-edited journals.
+\autoref{tbl:natbib:cite} and \autoref{tbl:LaTeX:Symbols} are two
+examples of tables typeset with the \package{booktabs} package.
+The \package{booktabs} package provides three additional commands,
+intended to replace the use of \verb+\hline+:
+\verb+\toprule+ for the rule to appear at the top of the table,
+\verb+\midrule+ for the middle rule following the table header,
+and \verb+\bottomrule+ for the bottom-most at the end of the table.
+These rules differ by their weight (thickness) and the spacing before
+and after.
+A table is typeset in the following manner:
+\begin{lstlisting}
+    \begin{table}
+    \caption{The caption for the table}
+    \label{tbl:label}
+    \centering
+    \begin{tabular}{cc}
+    \toprule
+    Header & Elements \\
+    \midrule
+    Row 1 & Row 1 \\
+    Row 2 & Row 2 \\
+    % ... and on and on ...
+    Row N & Row N \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+\end{lstlisting}
+See the \package{booktabs} documentation for advice in dealing with
+special cases, such as subheading rules, introducing extra space
+for divisions, and interior rules.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figures, Graphics, and Special Characters}
+\label{sec:Graphics}
+
+Most beginners to \LaTeX\ find managing figures to be one of the
+more difficult topics.  These difficulties arise from tussles of
+control between the beginners and \LaTeX.  In \LaTeX's terms, a figure
+is a \emph{floating element}, to be placed where it best fits.
+The user is not expected to concern him/herself with the placement
+of the figure.  Figures can be labelled, and when the text needs
+to reference the figure, it should include a reference to the figure
+using \verb+\autoref+ to reference the label. 
+\autoref{fig:latex-affirmation} is an example of a figure.
+\begin{figure}
+    \centering
+    % For the sake of this example, we'll just use text
+    %\includegraphics[width=3in]{file}
+    \Huge{\textsf{\LaTeX\ Rocks!}}
+    \caption{Proof of \LaTeX's amazing abilities}
+    \label{fig:latex-affirmation}   % label should change
+\end{figure}
+A figure is generally included as follows:
+\begin{lstlisting}
+    \begin{figure}
+    \centering
+    \includegraphics[width=3in]{file}
+    \caption{A useful caption}
+    \label{fig:fig-label}   % label should change
+    \end{figure}
+\end{lstlisting}
+There are three items of note:
+\begin{enumerate}
+\item External files are included using the \verb+\includegraphics+
+    command.  This command is defined by the \package{graphicx} package
+    and can often natively import graphics from a variety of formats.
+    The set of formats supported depends on your \TeX\ command processor.
+    Both \texttt{pdflatex} and \texttt{xelatex}, for example, can
+    import \textsc{gif}, \textsc{jpg}, and \textsc{pdf}.  The plain
+    version of \texttt{latex} only supports \textsc{eps} files.
+
+\item The \verb+\caption+ provides a caption to the figure.
+
+\item The \verb+\label+ command provides for associating a unique, user-defined,
+    and descriptive identifier to the figure.  The figure can be
+    can be referenced elsewhere in the text with this identifier
+    as described in \autoref{sec:CrossReferences}.
+\end{enumerate}
+See Keith Reckdahl’s excellent guide for more details,
+\webref{http://www.ctan.org/tex-archive/info/epslatex.pdf}{\emph{Using
+imported graphics in LaTeX2e}}.
+
+\LaTeX\ is rather particular about the format of its input files,
+with many common symbols appropriated for other purposes (\ie
+``\verb+~$%^&_{}\+'') and others are automagically transformed into
+typographically-preferred forms (\ie ``\verb+-`'+'') or something
+completely different (\ie ``\verb+<>+'').
+\autoref{tbl:LaTeX:Symbols} presents a list of common symbols and
+their corresponding \LaTeX\ commands.  A more comprehensive list 
+of symbols is available at:
+\url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/}
+\begin{table}
+\caption{Useful \LaTeX\ symbols}\label{tbl:LaTeX:Symbols}
+\centering\begin{tabular}{cc}\toprule
+\LaTeX & Result \\
+\midrule
+    \texttrademark & \verb+\texttrademark+ \\
+    \textcopyright & \verb+\textcopyright+ \\
+    \textregistered & \verb+\textregistered+ \\
+    \textsection & \verb+\textsection+ \\
+    \textdagger & \verb+\textdagger+ \\
+    \textdaggerdbl & \verb+\textdaggerdbl+ \\
+    \textless & \verb+\textless+ \\
+    \textgreater & \verb+\textgreater+ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Keeping Track of Older Versions with Revision Control}
+\label{sec:DissertationRevisionControl}.
+
+Software engineers have used \acf{RCS} to track changes to their
+software systems for decades.  These systems record the changes to
+the source code along with context as to why the change was required.
+These systems also support examining and reverting to particular
+revisions from their system's past.
+
+An \ac{RCS} can be used to keep track of changes to things other
+than source code, such as your dissertation.  For example, it can
+be useful to know exactly which revision of your dissertation was
+sent to a particular committee member.  Or to recover an accidentally
+deleted file, or a badly modified image.  With a revision control
+system, you can tag or annotate the revision of your dissertation
+that was sent to your committee, or when you incorporated changes
+from your supervisor.
+
+Unfortunately current revision control packages are not yet targetted
+to non-developers.  But the Subversion project's
+\webref{http://tortoisesvn.net/docs/release/TortoiseSVN_en/}{TortoiseSVN}
+has greatly simplified using the Subversion revision control system
+for Windows users.  You should consult your local geek.
+
+A simpler alternative strategy is to create a GoogleMail account
+and periodically mail yourself zipped copies of your dissertation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:Conclusions}
+
+At this point, you should be ready to go.  Other handy web resources:
+\begin{itemize}
+\item \webref{http://www.ctan.org}{\ac{CTAN}} is \emph{the} comprehensive
+    archive site for all things related to \TeX\ and \LaTeX.
+
+\item The \webref{http://www.tug.org/tetex/tetex-texmfdist/doc/}{te\TeX\
+    documentation guide} features a very handy list of the most useful
+    packages for \LaTeX\ as found in \ac{CTAN}.
+
+\item An online
+    \webref{http://www.ctan.org/get/info/latex2e-help-texinfo/latex2e.html}{%
+	reference to \LaTeX\ commands}.
+
+\item The list of 
+    \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=interruptlist}{%
+	Frequently Asked Questions about \TeX\ and \LaTeX}.
+
+\item The
+\webref{http://www.ctan.org/tex-archive/macros/latex/required/graphics/grfguide.pdf}{\texttt{color}}
+    package, part of the graphics bundle, provides for changing text
+    and background colours.
+
+\item Chemists and those requiring chemical formula should definitely
+    checkout the \package{mhchem} package.
+
+\item If you're really keen, you might want to join the
+    \webref{http://www.tug.org}{\TeX\ Users Group}.
+
+\end{itemize}
 
 \endinput
 

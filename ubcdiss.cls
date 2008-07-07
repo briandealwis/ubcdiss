@@ -26,6 +26,19 @@
 %% files such as this one.
 %% 
 
+%% Options that can be specified with the documentclass
+%%   balanced         cause text of each page to be centred
+%%   fogscopy         special weird formatting as demanded by FoGS
+%%   singlespacing    typeset text single spaced
+%%   onehalfspacing   typeset text line-and-a-half spacing
+%%   doublespacing    typeset text double spaced
+%%   draft            draft version only -- doesn't include figures, etc.
+%%   10pt             use a 10pt font
+%%   11pt             use a 11pt font
+%%   12pt             use a 12pt font
+%%   oneside          arrange pages for single-sided printing
+%%   twoside          insert blank pages as required for double-sided printing
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ubcdiss}[2008/04/06]
 
@@ -93,8 +106,11 @@
 \RequirePackage{textcase}	% for lower- and upper-casing
 
 % tocbibind: cause list of figures, tables in the toc
-%   use nottoc: don't want the toc itself in the toc
-\RequirePackage[nottoc]{tocbibind}
+% We used to use the nottoc so that the toc wouldn't be itself in the
+% toc.  But FoGS apparently changed their mind and now want it there.
+% Should they change their minds again, use the following:
+%    \RequirePackage[nottoc]{tocbibind}
+\RequirePackage{tocbibind}
 
 % Table of Contents must be labelled "Table of Contents"
 \renewcommand{\contentsname}{Table of Contents}

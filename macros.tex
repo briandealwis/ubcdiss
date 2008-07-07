@@ -1,4 +1,5 @@
-%!TEX root = diss.tex
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = template.tex
 %
 % This file provides examples of some useful macros for typesetting
 % dissertations.  None of the macros defined here are necessary beyond
@@ -32,6 +33,12 @@
 \DeclareUrlCommand\DOI{}
 \newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\DOI{doi:#1}}}
 %\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}
+
+% Useful macro to reference an online document with a hyperlink
+% as well with the URL explicitly listed in a footnote
+% #1: the URL
+% #2: the anchoring text
+\newcommand{\webref}[2]{\href{#1}{#2}\footnote{\url{#1}}}
 
 % epigraph is a nice environment for typesetting quotations
 \makeatletter
