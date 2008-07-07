@@ -1,0 +1,53 @@
+%!TEX root = diss.tex
+%
+% This file provides examples of some useful macros for typesetting
+% dissertations.  None of the macros defined here are necessary beyond
+% for the template.tex file: feel free to change, remove, and add
+% your own definitions.
+%
+% We recommend that you define macros to separate the semantics
+% of the things you write from how they are presented.  For example,
+% you'll see definitions below for a macro \filename{}: by using
+% \filename{} consistently in the text, we can change how filenames
+% are typeset simply by changing the definition of \filename{} in
+% this file.
+% 
+
+\newcommand{\NA}{\textsc{n/a}}
+\newcommand{\eg}{e.g.,\ }
+\newcommand{\ie}{i.e.,\ }
+
+% Some useful macros for typesetting LaTeX terms
+\newcommand{\BibTeX}{Bib\TeX}
+\newcommand{\etal}{\emph{et al}}
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\class}[1]{\texttt{#1}}
+\newcommand{\package}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
+\newcommand{\packagemisc}[1]{\href{http://www.ctan.org/macros/latex/contrib/misc/#1.sty}{\texttt{#1}}}
+\newcommand{\env}[1]{\texttt{#1}}
+
+% Define a command \doi{} to typeset a digital object identifier (DOI).
+% The first version requires the `url' package (which is loaded by
+% ubcdiss.cls).  The commented-out second variant does not.
+\DeclareUrlCommand\DOI{}
+\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\DOI{doi:#1}}}
+%\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}
+
+% epigraph is a nice environment for typesetting quotations
+\makeatletter
+\newenvironment{epigraph}{%
+	\begin{flushright}
+	\begin{minipage}{\columnwidth-0.75in}
+	\begin{flushright}
+	\@ifundefined{singlespacing}{}{\singlespacing}%
+    }{
+	\end{flushright}
+	\end{minipage}
+	\end{flushright}}
+\makeatother
+
+% \FIXME{} is a useful macro for noting things needing to be changed.
+% The following definition will also output a warning to the console
+\newcommand{\FIXME}[1]{\typeout{**FIXME** #1}\textbf{[FIXME: #1]}}
+
+% END
