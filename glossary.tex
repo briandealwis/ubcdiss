@@ -1,24 +1,36 @@
 %!TEX root = diss.tex
 \chapter{Glossary}
 
+This is an example of a glossary.  We use the \package{acroynym}
+package with its \texttt{printonlyused} option to include only those
+acronyms explicitly referenced in the \LaTeX\ source.
+
 % use \acrodef to define an acronym, but no listing
 \acrodef{UI}{user interface}
+\acrodef{UBC}{University of British Columbia}
 
-\begin{acronym}[VAST]
+% The acronym environment will typeset only those acronyms that were
+% *actually used* in the course of the document
+\begin{acronym}[ANOVA]
 \acro{ANOVA}[ANOVA]{Analysis of Variance\acroextra{, a set of
-  statistical techniques to identify sources of variability between groups.}}
+  statistical techniques to identify sources of variability between groups}}
 \acro{API}{application programming interface}
+\acro{DOI}{Document Object Identifier}
+\acro{FoGS}[FoGS]{The Faculty of Graduate Studies}
+\acro{RCS}[RCS]{Revision control system\acroextra{, a software
+    tool for tracking changes to a set of files}}
 \acro{TLX}[TLX]{Task Load Index\acroextra{, an instrument for gauging
   the subjective mental workload experienced by a human in performing
-  a task.}}
+  a task}}
 \acro{UML}{Unified Modelling Language\acroextra{, a visual language
-    for modelling the structure of software artefacts.}}
+    for modelling the structure of software artefacts}}
+\acro{URL}{Unique Resource Locator}
 \acro{W3C}[W3C]{\acroextra{the }World Wide Web Consortium\acroextra{,
-    the standards body for web technologies.}}
+    the standards body for web technologies}}
 \acro{XML}{Extensible Markup Language}
 \end{acronym}
 
-% You can also use something like the following to only define acronyms
+% You can also use \newacro{}{} to only define acronyms
 % but without explictly creating a glossary
 % 
 % \newacro{ANOVA}[ANOVA]{Analysis of Variance\acroextra{, a set of
