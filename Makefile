@@ -3,6 +3,7 @@
      TEXSOURCE1 = $(NAME1).tex \
 		    abstract.tex ack.tex glossary.tex intro.tex
            BBL1 = $(NAME1).bbl
+     VERSIONTEX = version.tex
 
 #         NAME2 =
 #      PRODUCT2 = $(NAME2).pdf
@@ -23,9 +24,9 @@
 
 all: $(PRODUCT1)
 
-$(NAME1).pdf: $(TEXSOURCE1) $(BBL1) $(PDFFIGURES)
+$(NAME1).pdf: $(TEXSOURCE1) $(BBL1) $(PDFFIGURES) $(VERSIONTEX)
 
-$(NAME1).dvi: $(TEXSOURCE1) $(BBL1) $(EPSFIGURES)
+$(NAME1).dvi: $(TEXSOURCE1) $(BBL1) $(EPSFIGURES) $(VERSIONTEX)
 $(NAME1).bbl: $(TEXSOURCE1) $(BIBINPUTS) $(PDFFIGURES)
 
 #$(NAME2).pdf: $(TEXSOURCE2) $(BBL2) $(BUILTPDFFIGURES)
@@ -47,6 +48,21 @@ LATEX=		latex
 BIBLATEX=	$(PDFLATEX)
 BIBTEX=		bibtex -min-crossref=1000
 RM=		rm -f
+MV=		mv
+
+version.tex: $(TEXSOURCE1) $(BBL1)
+	@if [ -d .bzr ]; then \
+	    bzr version-info --custom \
+		--template="{branch_nick} r{revno}\n" \
+		> version.tex.new; \
+	    if cmp -s version.tex version.tex.new; then \
+		echo "version.tex is up to date"; \
+		$(RM) version.tex.new; \
+	    else \
+		echo "version.tex updated"; \
+		$(MV) version.tex.new version.tex; \
+	    fi; \
+	fi
 
 .tex.pdf:
 	$(PDFLATEX) $(LATEXFLAGS) $<
