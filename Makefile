@@ -64,6 +64,20 @@ version.tex: $(TEXSOURCE1) $(BBL1)
 	    fi; \
 	fi
 
+export: $(PRODUCT1)
+	@if [ ! -d .bzr ]; then \
+	    echo "'export' is only for maintainer"; \
+	    exit 1; \
+	fi
+	@if [ `bzr version-info --custom --template="{clean}"` = 0 ]; then \
+	    echo "warning: tree has pending changes"; \
+	fi
+	bzr export ubcdiss
+	cp $(VERSIONTEX) $(PRODUCT1) ubcdiss
+	zip -r9 ubcdiss-`bzr version-info --custom --template="{revno}"`.zip \
+	    ubcdiss/
+	rm -rf ubcdiss
+
 .tex.pdf:
 	$(PDFLATEX) $(LATEXFLAGS) $<
 	@while egrep -q 'LaTeX Warning:.*Rerun|Rerun to get citations correct' $*.log; do \
