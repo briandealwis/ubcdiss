@@ -1,0 +1,32 @@
+Frequently Asked Questions (FAQ)
+
+Many questions are also answered in doc.pdf.
+
+Q. I get an error in macros.tex that \DeclareUrlCommand can't be found.
+
+A. Your TeX distribution has an old version of url.sty.  Find a more
+   recent version, such as:
+   
+    http://ctan.org/get/macros/latex/contrib/misc/url.sty
+
+   and just copy it to this directory.
+
+
+
+Notes on using XeTeX/XeLaTeX:
+=============================
+
+Many TeX distributions ship with an older version of XeTeX/XeLaTeX,
+and you may need to use a more recent version of XeTeX/XeLaTeX; I
+used 0.997.  If you're not a somewhat proficient C hacker, then
+find a capable friend.  The XeTeX source can be fetched from
+
+    http://scripts.sil.org/svn-public/xetex/TRUNK
+
+Run the handy 'build-xetex' script there.  If all goes well, you'll
+have new versions of xetex, xdvipdfmx, and xdv2pdf which you'll need
+to install in the right place.  Note that you may need to regenerate
+your formats for the new xetex binary; the easiest way seems to be:
+
+  $ sudo fmtutil-sys --refresh
+

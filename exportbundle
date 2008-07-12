@@ -1,0 +1,32 @@
+#!/bin/sh
+DEST=.
+
+if [ ! -d .bzr ]; then
+    echo "'$0' is only for the maintainer"
+    exit 1
+fi
+
+bzr version-info --custom --template="{branch_nick} r{revno}\n" \
+    > version.tex.new
+if cmp -s version.tex version.tex.new; then
+    echo "version.tex is up to date"
+    rm -f version.tex.new
+else
+    echo "version.tex updated"
+    mv version.tex.new version.tex || exit
+fi
+
+make all || exit 1
+
+bzr export ubcdiss || exit
+
+revno=`bzr version-info --custom --template="{revno}"`
+cp version.tex ubcdiss || exit
+cp diss.pdf ubcdiss/doc.pdf || exit
+zip -r9 ${DEST}/ubcdiss-r$revno.zip ubcdiss || exit
+rm -rf ubcdiss
+
+if [ `bzr version-info --custom --template="{clean}"` = 0 ]; then
+    echo "WARNING: tree has pending changes"
+    exit 1
+fi

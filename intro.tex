@@ -1,5 +1,5 @@
 %% The following is a directive for TeXShop to indicate the main file
-%%!TEX root = template.tex
+%%!TEX root = diss.tex
 
 \chapter{Introduction}
 \label{ch:Introduction}
@@ -31,8 +31,9 @@ We cover managing and using bibliographies with \BibTeX\ in
 \autoref{sec:BibTeX}. 
 We briefly describe typesetting attractive tables in
 \autoref{sec:TypesettingTables}.
-We briefly describe including external figures and using
-special symbols in \LaTeX\ in \autoref{sec:Graphics}.
+We briefly describe including external figures in
+\autoref{sec:Graphics}, and using special characters and symbols
+in \autoref{sec:SpecialSymbols}.
 As it is often useful to track different versions of your dissertation,
 we discuss revision control further in
 \autoref{sec:DissertationRevisionControl}. 
@@ -56,6 +57,23 @@ be described as six files such as \file{intro.tex},
 \file{relwork.tex}, \file{model.tex}, \file{eval.tex},
 \file{discuss.tex}, and \file{concl.tex}.
 
+We also encourage you to use macros for separating how something
+will be typeset (\eg bold, or italics) from the meaning of that
+something. 
+For example, if you look at \file{intro.tex}, you will see repeated
+uses of a macro \verb+\file{}+ to indicate file names.
+The \verb+\file{}+ macro is defined in the file \file{macros.tex}.
+The consistent use of \verb+\file{}+ throughout the text not only
+indicates that the argument to the macro represents a file (providing
+meaning or semantics), but also allows easily changing how
+file names are typeset simply by changing the definition of the
+\verb+\file{}+ macro.
+\file{macros.tex} contains other useful macros for properly typesetting
+things like the proper uses of the latinate \emph{exempli grati\={a}}
+and \emph{id est} (\ie \verb+\eg+ and \verb+\ie+), 
+web references with a footnoted \acs{URL} (\verb+\webref{url}{text}+),
+as well as definitions specific to this documentation
+(\verb+\latexpackage{}+).
 
 \subsection{Changing Page Widths and Heights}
 
@@ -68,7 +86,7 @@ not change the line-widths!
 
 Some students are unfortunately saddled with misguided supervisors
 or committee members whom believe that documents should have the
-narrowest margins possible.  The \package{geometry} package is
+narrowest margins possible.  The \latexpackage{geometry} package is
 helpful in such cases.  Using this package is as simple as:
 \begin{lstlisting}
     \usepackage[margin=1.25in,top=1.25in,bottom=1.25in]{geometry}
@@ -77,35 +95,34 @@ You should check the package's documentation for more complex uses.
 
 There are occasions where it becomes necessary to make temporary
 changes to the page width, such as to accomodate a larger formula. 
-The \packagemisc{chngpage} package provides an \env{adjustwidth}
+The \latexmiscpackage{chngpage} package provides an \env{adjustwidth}
 environment that does just this.  For example:
 \begin{lstlisting}
     % Expand left and right margins by 0.75in
     \begin{adjustwidth}{-0.75in}{-0.75in}
-    % We may need to adjust the perceived column
-    % width for LaTeX to get with it.
+    % Must adjust the perceived column width for LaTeX to get with it.
     \addtolength{\columnwidth}{1.5in}
     \[ an extra long math formula \]
     \end{adjustwidth}
 \end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cross-References}
+\section{Making Cross-References}
 \label{sec:CrossReferences}
 
-\LaTeX\ make managing cross-references easy, and the \package{hyperref}
-package's\ \verb+\autoref+ command\footnote{%
-    The \package{hyperref} package is included by default in this
+\LaTeX\ make managing cross-references easy, and the \latexpackage{hyperref}
+package's\ \verb+\autoref{}+ command\footnote{%
+    The \latexpackage{hyperref} package is included by default in this
     template.}
 makes it easier still. 
 
 A thing to be cross-referenced, such as a section, figure, or equation,
 is \emph{labelled} using a unique, user-provided identifier, defined
-using the \verb+\label+ command.  
-The thing is referenced elsewhere using the \verb+\autoref+ command.
+using the \verb+\label{}+ command.  
+The thing is referenced elsewhere using the \verb+\autoref{}+ command.
 For example, this section was defined using:
 \begin{lstlisting}
-    \section{Cross-References}
+    \section{Making Cross-References}
     \label{sec:CrossReferences}
 \end{lstlisting}
 References to this section are done as follows:
@@ -113,20 +130,24 @@ References to this section are done as follows:
     We then cover the ease of managing cross-references in \LaTeX\
     in \autoref{sec:CrossReferences}.
 \end{lstlisting}
-\verb+\autoref+ takes care of determining \emph{type} of the 
-thing being referenced, so \verb+\autoref{sec:CrossReferences}+
-is replaced with the text ``\autoref{sec:CrossReferences}.''
+\verb+\autoref{}+ takes care of determining the \emph{type} of the 
+thing being referenced, so the example above is rendered as
+\begin{quote}
+    We then cover the ease of managing cross-references in \LaTeX\
+    in \autoref{sec:CrossReferences}.
+\end{quote}
 
-A identifer is a simple sequence of characters, numbers, digits,
+The label is any simple sequence of characters, numbers, digits,
 and some punctuation marks such as ``:'' and ``--''; there should
-be no spaces.  A consistent key format simiplifies remembering how
-to make references.  This document uses a prefix to indicate the
-type of the thing being referenced, such as \texttt{sec} for sections,
-\texttt{fig} for figures, \texttt{tbl} for tables, and \texttt{eqn}
-for equations.
+be no spaces.  Try to use a consistent key format: this simplifies
+remembering how to make references.  This document uses a prefix
+to indicate the type of the thing being referenced, such as \texttt{sec}
+for sections, \texttt{fig} for figures, \texttt{tbl} for tables,
+and \texttt{eqn} for equations.
 
-For further details on defining the text used for the thing types,
-see the \package{hyperref} documentation.
+For details on defining the text used to describe the type
+of \emph{thing}, search \file{diss.tex} and the \latexpackage{hyperref}
+documentation for \texttt{autorefname}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,11 +180,14 @@ punctuation marks such as ``:'' and ``--''; there should be no spaces.
 A consistent key format simiplifies remembering how to make references. 
 For example:
 \begin{quote}
-   \fbox{\emph{lowercased-last-name-of-first-author}} \texttt{-}
-    \fbox{\emph{year}} \texttt{-} \fbox{\emph{contracted-title}}
+   \fbox{\emph{last-name}}\texttt{-}\fbox{\emph{year}}\texttt{-}\fbox{\emph{contracted-title}}
 \end{quote}
-Then G. Kiczales \etal's article, \emph{Aspect-Oriented Programming},
-published in 1997, would have key \texttt{kiczales-1997-aop}.
+where \emph{last-name} represents the last name for the first author,
+and \emph{contracted-title} is some meaningful contraction of the
+title.  Then \citeauthor{kiczales-1997-aop}'s seminal article on
+aspect-oriented programming~\cite{kiczales-1997-aop} (published in
+\citeyear{kiczales-1997-aop}) might be given the key
+\texttt{kiczales-1997-aop}.
 
 An example of a \BibTeX\ \file{.bib} file is included as
 \file{biblio.bib}.  A description of the format a \file{.bib}
@@ -193,13 +217,17 @@ in the bibliography.  For example:
     occurring in several languages.
 \end{quote}
 There are several forms of the \verb+\cite+ command (provided
-by the \package{natbib} package); see \autoref{tbl:natbib:cite}.
+by the \latexpackage{natbib} package); see \autoref{tbl:natbib:cite}.
+Note that the form of the citation will depend on the 
+bibliography style (described in the next section); this document
+has been formatted with a numbered style, but other styles exist.
 \begin{table}
 \caption{Available \texttt{cite} variants.}
 \label{tbl:natbib:cite}
 \begin{tabular}{ll}\toprule
 Variant & Result \\
 \midrule
+\verb+\cite+ & Parenthetical citation (\eg \cite{kiczales-1997-aop}) \\
 \verb+\citet+ & Textual citation: includes author (\eg \citet{kiczales-1997-aop}) \\
 \verb+\citet*+ & Textual citation with unabbreviated author list \\
 \verb+\citep+ & Parenthetical citation (\eg \citep{kiczales-1997-aop}) \\
@@ -214,27 +242,36 @@ Variant & Result \\
 
 \BibTeX\ separates the citing of a reference from how the cited
 reference is formatted for a bibliography, specified with the
-\verb+\bibliographystyle+ command.  There are several varieties,
-including \texttt{plainnat}, \texttt{abbrvnat}, and \texttt{unsrtnat}.
+\verb+\bibliographystyle+ command. 
+There are many varieties, such as \texttt{plainnat}, \texttt{abbrvnat},
+\texttt{unsrtnat}, and \texttt{vancouver}.
+This document was formatted with \texttt{abbrvnat}.
+Look through your \TeX\ distribution for \file{.bst} files. 
+Note that use of some \file{.bst} files do not emit all the information
+necessary to properly use \verb+\citet{}+, \verb+\citep{}+,
+\verb+\citeyear{}+, and \verb+\citeauthor{}+.
+
+There are also packages available to place citations on a per-chapter
+basis (\latexpackage{bibunits}), as footnotes (\latexpackge{footbib}),
+and inline (\latexpackage{bibentry}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Typesetting Tables}
 \label{sec:TypesettingTables}
 
 Unfortunately \citet{lamport-1994-ladps} made one grievous mistake
-in \LaTeX, the suggested manner for typesetting tables results
-in abysmally ugly abominations.  These suggestions have been
-perpetuated in most \LaTeX\ tutorials.
-Fortunately this situation is easily rectified: simply ignore the
-instructions on using horizontal and
-vertical rules (specifically the use of \verb+\hline+ and \verb+|+) and
-use the \package{booktabs} package instead.
+in \LaTeX: his suggested manner for typesetting tables produce
+abysmally ugly abominations.  These suggestions have unfortunately
+been replicated in most \LaTeX\ tutorials.  Fortunately these
+abominations are easily avoided by simply ignoring his instructions
+on horizontal and vertical rules (specifically the use of \verb+\hline+
+and \verb+|+) and using the \latexpackage{booktabs} package instead.
 
-The \package{booktabs} environment produces far more professional-looking
-tables, and are the form used by most professionally-edited journals.
+The \latexpackage{booktabs} package provides new rules, producing
+tables in the form used by most professionally-edited journals.
 \autoref{tbl:natbib:cite} and \autoref{tbl:LaTeX:Symbols} are two
-examples of tables typeset with the \package{booktabs} package.
-The \package{booktabs} package provides three additional commands,
+examples of tables typeset with the \latexpackage{booktabs} package.
+The \latexpackage{booktabs} package provides three new commands
 intended to replace the use of \verb+\hline+:
 \verb+\toprule+ for the rule to appear at the top of the table,
 \verb+\midrule+ for the middle rule following the table header,
@@ -259,7 +296,7 @@ A table is typeset in the following manner:
     \end{tabular}
     \end{table}
 \end{lstlisting}
-See the \package{booktabs} documentation for advice in dealing with
+See the \latexpackage{booktabs} documentation for advice in dealing with
 special cases, such as subheading rules, introducing extra space
 for divisions, and interior rules.
 
@@ -267,14 +304,13 @@ for divisions, and interior rules.
 \section{Figures, Graphics, and Special Characters}
 \label{sec:Graphics}
 
-Most beginners to \LaTeX\ find managing figures to be one of the
-more difficult topics.  These difficulties arise from tussles of
-control between the beginners and \LaTeX.  In \LaTeX's terms, a figure
-is a \emph{floating element}, to be placed where it best fits.
+Most \LaTeX\ beginners find figures to be one of the more challenging
+topics.  In \LaTeX, a figure is a \emph{floating element}, to be
+placed where it best fits.
 The user is not expected to concern him/herself with the placement
-of the figure.  Figures can be labelled, and when the text needs
-to reference the figure, it should include a reference to the figure
-using \verb+\autoref+ to reference the label. 
+of the figure.  The figure should instead be labelled, and where
+the figure is used, the text should use \verb+\autoref+ to reference
+the figure's label.
 \autoref{fig:latex-affirmation} is an example of a figure.
 \begin{figure}
     \centering
@@ -296,7 +332,7 @@ A figure is generally included as follows:
 There are three items of note:
 \begin{enumerate}
 \item External files are included using the \verb+\includegraphics+
-    command.  This command is defined by the \package{graphicx} package
+    command.  This command is defined by the \latexpackage{graphicx} package
     and can often natively import graphics from a variety of formats.
     The set of formats supported depends on your \TeX\ command processor.
     Both \texttt{pdflatex} and \texttt{xelatex}, for example, can
@@ -314,28 +350,31 @@ See Keith Reckdahl’s excellent guide for more details,
 \webref{http://www.ctan.org/tex-archive/info/epslatex.pdf}{\emph{Using
 imported graphics in LaTeX2e}}.
 
-\LaTeX\ is rather particular about the format of its input files,
-with many common symbols appropriated for other purposes (\ie
-``\verb+~$%^&_{}\+'') and others are automagically transformed into
-typographically-preferred forms (\ie ``\verb+-`'+'') or something
-completely different (\ie ``\verb+<>+'').
+\section{Special Characters and Symbols}
+\label{sec:SpecialSymbols}
+
+\LaTeX\ appropriates many common symbols for its own purposes,
+with some used for commands (\ie \verb+\{}&%+) and
+mathematics (\ie \verb+$^_+), and others are automagically transformed
+into typographically-preferred forms (\ie \verb+-`'+) or to
+completely different forms (\ie \verb+<>+).
 \autoref{tbl:LaTeX:Symbols} presents a list of common symbols and
-their corresponding \LaTeX\ commands.  A more comprehensive list 
-of symbols is available at:
+their corresponding \LaTeX\ commands.  A much more comprehensive list 
+of symbols and accented characters is available at:
 \url{http://www.ctan.org/tex-archive/info/symbols/comprehensive/}
 \begin{table}
 \caption{Useful \LaTeX\ symbols}\label{tbl:LaTeX:Symbols}
-\centering\begin{tabular}{cc}\toprule
-\LaTeX & Result \\
+\centering\begin{tabular}{ccp{0.5cm}cc}\toprule
+\LaTeX & Result && \LaTeX & Result \\
 \midrule
-    \texttrademark & \verb+\texttrademark+ \\
-    \textcopyright & \verb+\textcopyright+ \\
-    \textregistered & \verb+\textregistered+ \\
-    \textsection & \verb+\textsection+ \\
-    \textdagger & \verb+\textdagger+ \\
-    \textdaggerdbl & \verb+\textdaggerdbl+ \\
-    \textless & \verb+\textless+ \\
-    \textgreater & \verb+\textgreater+ \\
+    \verb+\texttrademark+ & \texttrademark && \verb+\&+ & \& \\
+    \verb+\textcopyright+ & \textcopyright && \verb+\{ \}+ & \{ \} \\
+    \verb+\textregistered+ & \textregistered && \verb+\%+ & \% \\
+    \verb+\textsection+ & \textsection && \verb+\verb!~!+ & \verb!~! \\
+    \verb+\textdagger+ & \textdagger && \verb+\$+ & \$ \\
+    \verb+\textdaggerdbl+ & \textdaggerdbl && \verb+\^{}+ & \^{} \\
+    \verb+\textless+ & \textless && \verb+\_+ & \_ \\
+    \verb+\textgreater+ & \textgreater && \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -375,7 +414,9 @@ and periodically mail yourself zipped copies of your dissertation.
 At this point, you should be ready to go.  Other handy web resources:
 \begin{itemize}
 \item \webref{http://www.ctan.org}{\ac{CTAN}} is \emph{the} comprehensive
-    archive site for all things related to \TeX\ and \LaTeX.
+    archive site for all things related to \TeX\ and \LaTeX. 
+    Should you have a particular need, somebody else is almost
+    certainly to have had the same need before you.
 
 \item The \webref{http://www.tug.org/tetex/tetex-texmfdist/doc/}{te\TeX\
     documentation guide} features a very handy list of the most useful
@@ -386,7 +427,7 @@ At this point, you should be ready to go.  Other handy web resources:
 	reference to \LaTeX\ commands}.
 
 \item The list of 
-    \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=interruptlist}{%
+    \webref{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=interruptlist}{%
 	Frequently Asked Questions about \TeX\ and \LaTeX}.
 
 \item The
@@ -395,7 +436,7 @@ At this point, you should be ready to go.  Other handy web resources:
     and background colours.
 
 \item Chemists and those requiring chemical formula should definitely
-    checkout the \package{mhchem} package.
+    checkout the \latexpackage{mhchem} package.
 
 \item If you're really keen, you might want to join the
     \webref{http://www.tug.org}{\TeX\ Users Group}.

@@ -1,35 +1,36 @@
-%% The following is a directive for TeXShop to indicate the main file
-%%!TEX root = template.tex
-%
 % This file provides examples of some useful macros for typesetting
 % dissertations.  None of the macros defined here are necessary beyond
-% for the template.tex file: feel free to change, remove, and add
+% for the template documentation, so feel free to change, remove, and add
 % your own definitions.
 %
 % We recommend that you define macros to separate the semantics
 % of the things you write from how they are presented.  For example,
-% you'll see definitions below for a macro \filename{}: by using
-% \filename{} consistently in the text, we can change how filenames
-% are typeset simply by changing the definition of \filename{} in
+% you'll see definitions below for a macro \file{}: by using
+% \file{} consistently in the text, we can change how filenames
+% are typeset simply by changing the definition of \file{} in
 % this file.
 % 
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
 
-\newcommand{\NA}{\textsc{n/a}}
-\newcommand{\eg}{e.g.,\ }
-\newcommand{\ie}{i.e.,\ }
-
-% Some useful macros for typesetting LaTeX terms
-\newcommand{\BibTeX}{Bib\TeX}
+\newcommand{\NA}{\textsc{n/a}}	% for "not applicable"
+\newcommand{\eg}{e.g.,\ }	% proper form of examples (\eg a, b, c)
+\newcommand{\ie}{i.e.,\ }	% proper form for that is (\ie a, b, c)
 \newcommand{\etal}{\emph{et al}}
+
+% Some useful macros for typesetting terms.
 \newcommand{\file}[1]{\texttt{#1}}
 \newcommand{\class}[1]{\texttt{#1}}
-\newcommand{\package}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
-\newcommand{\packagemisc}[1]{\href{http://www.ctan.org/macros/latex/contrib/misc/#1.sty}{\texttt{#1}}}
+\newcommand{\latexpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
+\newcommand{\latexmiscpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/misc/#1.sty}{\texttt{#1}}}
 \newcommand{\env}[1]{\texttt{#1}}
+\newcommand{\BibTeX}{Bib\TeX}
 
 % Define a command \doi{} to typeset a digital object identifier (DOI).
-% The first version requires the `url' package (which is loaded by
-% ubcdiss.cls).  The commented-out second variant does not.
+% Note: if the following definition raise an error, then you likely
+% have an ancient version of url.sty.  Either find a more recent version
+% (3.1 or later work fine) and simply copy it into this directory,  or
+% comment out the following two lines and uncomment the third.
 \DeclareUrlCommand\DOI{}
 \newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\DOI{doi:#1}}}
 %\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}

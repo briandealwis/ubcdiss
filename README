@@ -1,35 +1,49 @@
-This distribution provides an alternative LaTeX package for writing
-a UBC-conformant dissertation (at least as of June 2008).  This
-package uses commonly-available packages available in most LaTeX
-distributions such as MikTeX and TeXLive.
+This distribution provides a LaTeX template for writing a dissertation
+conformant to UBC's specification (as of June 2008).  The template
+uses commonly-available packages available in most LaTeX distributions
+such as MacTeX, MikTeX, and TeXLive.
 
-You should review the various FoGS Thesis Specifications and Formatting
-Requirements.  FoGS is very accepting of different fonts, but is
-otherwise very strict on the formatting requirements.
-<http://www.grad.ubc.ca/students/thesis/index.asp?menu=000,000,000,000>
-<http://www.grad.ubc.ca/students/thesis/index.asp?menu=005,000,000,000>
+The template has some documentation in doc.pdf.  diss.tex is the
+main file, but all the dissertation content is contained in other
+files (e.g., intro.tex) which are included from diss.tex using
+\include.  The template documentation was itself written using the
+template, and the content is found in ack.tex, glossary.tex, and
+intro.tex.
 
-I developed this package separately from Michael Forbes's
-ubcthesis.cls/genthesis.cls: unlike Forbes' class, this class builds
-on top of the standard LaTeX book class and this class has better
+FoGS has very strict formatting requirements, and you should review
+the various FoGS Thesis Specifications and Formatting Requirements.
+FoGS is very lenient with font choice, as long as the fonts are
+used consistently.
+
+    http://www.grad.ubc.ca/students/thesis/index.asp?menu=000,000,000,000
+    http://www.grad.ubc.ca/students/thesis/index.asp?menu=005,000,000,000
+
+I developed this template independently from Michael Forbes's
+ubcthesis.cls/genthesis.cls.  Forbes' class was a modified version
+of some other LaTeX class, and suffered from compatibility problems
+with some LaTeX packages.  This template's document class builds
+on top of the standard LaTeX book class, ensuring much better
 compatibility with standard LaTeX packages.
+
+Please feel free to contact me if you have problems, though I make
+no guarantees.  Before reporting a problem, please ensure that
+
+ 1. you have the latest version of the template (see the abstract
+    in doc.pdf or version.tex),
+ 2. you are using the latest version of your TeX distribution,
+ 2. your question isn't answered in the FAQ file, and
+ 3. you've exhausted your local LaTeX wizard's help (should you
+    have one).
+
+When reporting a problem BE SURE TO INCLUDE:
+
+ 1. the version number of this template (see the abstract in doc.pdf or
+    the version.tex),
+ 2. details on the operating system and TeX distribution you are using 
+    (e.g., Windows XP and MikTeX 2.5, SuSE Linux 10 and its bundled
+    installation, MacOS X 10.5.4 and MacTeX 2007),
+ 3. the log file (likely called diss.log).
 
 Brian de Alwis
 brian.de.alwis@usask.ca
 
-
-Notes on using XeTeX/XeLaTeX:
-=============================
-
-You may need to use a more recent version of XeTeX/XeLaTeX; I used 0.997.
-If you're not a somewhat proficient C hacker, then find a capable friend. 
-The XeTeX source can be fetched from
-
-    http://scripts.sil.org/svn-public/xetex/TRUNK
-
-Run the handy 'build-xetex' script there.  If all goes well, you'll
-have new versions of xetex, xdvipdfmx, and xdv2pdf which you'll need
-to install in the right place.  Note that you may need to regenerate
-your formats for the new xetex binary; the easiest way seems to be:
-
-  $ sudo fmtutil-sys --refresh

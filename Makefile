@@ -1,9 +1,8 @@
-          NAME1 = template
+          NAME1 = diss
        PRODUCT1 = $(NAME1).pdf
      TEXSOURCE1 = $(NAME1).tex \
-		    abstract.tex ack.tex glossary.tex intro.tex
+		    abstract.tex ack.tex glossary.tex intro.tex version.tex
            BBL1 = $(NAME1).bbl
-     VERSIONTEX = version.tex
 
 #         NAME2 =
 #      PRODUCT2 = $(NAME2).pdf
@@ -24,9 +23,8 @@
 
 all: $(PRODUCT1)
 
-$(NAME1).pdf: $(TEXSOURCE1) $(BBL1) $(PDFFIGURES) $(VERSIONTEX)
-
-$(NAME1).dvi: $(TEXSOURCE1) $(BBL1) $(EPSFIGURES) $(VERSIONTEX)
+$(NAME1).pdf: $(TEXSOURCE1) $(BBL1) $(PDFFIGURES)
+$(NAME1).dvi: $(TEXSOURCE1) $(BBL1) $(EPSFIGURES)
 $(NAME1).bbl: $(TEXSOURCE1) $(BIBINPUTS) $(PDFFIGURES)
 
 #$(NAME2).pdf: $(TEXSOURCE2) $(BBL2) $(BUILTPDFFIGURES)
@@ -49,34 +47,6 @@ BIBLATEX=	$(PDFLATEX)
 BIBTEX=		bibtex -min-crossref=1000
 RM=		rm -f
 MV=		mv
-
-version.tex: $(TEXSOURCE1) $(BBL1)
-	@if [ -d .bzr ]; then \
-	    bzr version-info --custom \
-		--template="{branch_nick} r{revno}\n" \
-		> version.tex.new; \
-	    if cmp -s version.tex version.tex.new; then \
-		echo "version.tex is up to date"; \
-		$(RM) version.tex.new; \
-	    else \
-		echo "version.tex updated"; \
-		$(MV) version.tex.new version.tex; \
-	    fi; \
-	fi
-
-export: $(PRODUCT1)
-	@if [ ! -d .bzr ]; then \
-	    echo "'export' is only for maintainer"; \
-	    exit 1; \
-	fi
-	@if [ `bzr version-info --custom --template="{clean}"` = 0 ]; then \
-	    echo "warning: tree has pending changes"; \
-	fi
-	bzr export ubcdiss
-	cp $(VERSIONTEX) $(PRODUCT1) ubcdiss
-	zip -r9 ubcdiss-`bzr version-info --custom --template="{revno}"`.zip \
-	    ubcdiss/
-	rm -rf ubcdiss
 
 .tex.pdf:
 	$(PDFLATEX) $(LATEXFLAGS) $<
