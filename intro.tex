@@ -125,7 +125,7 @@ For example, this section was defined using:
     \section{Making Cross-References}
     \label{sec:CrossReferences}
 \end{lstlisting}
-References to this section are done as follows:
+References to this section are made as follows:
 \begin{lstlisting}
     We then cover the ease of managing cross-references in \LaTeX\
     in \autoref{sec:CrossReferences}.
@@ -206,7 +206,7 @@ Having described some references, we then need to cite them.  We
 do this using a form of the \verb+\cite+ command.  For example:
 \begin{lstlisting}
     \citet{kiczales-1997-aop} present examples of crosscutting 
-    occurring in several languages.
+    from programs written in several languages.
 \end{lstlisting}
 When processed, the \verb+\citet+ will cause the paper's authors
 and a standardized reference to the paper to be inserted in the
@@ -214,26 +214,40 @@ document, and will also include a formatted citation for the paper
 in the bibliography.  For example:
 \begin{quote}
     \citet{kiczales-1997-aop} present examples of crosscutting 
-    occurring in several languages.
+    from programs written in several languages.
 \end{quote}
 There are several forms of the \verb+\cite+ command (provided
-by the \latexpackage{natbib} package); see \autoref{tbl:natbib:cite}.
-Note that the form of the citation will depend on the 
-bibliography style (described in the next section); this document
-has been formatted with a numbered style, but other styles exist.
+by the \latexpackage{natbib} package), as demonstrated in
+\autoref{tbl:natbib:cite}.
+Note that the form of the citation (numeric or author-year) depends
+on the bibliography style (described in the next section).
+The \verb+\citet+ variant is used when the author names form
+an object in the sentence, whereas the \verb+\citep+ variant
+is used for parenthetic references, more like an end-note.
 \begin{table}
-\caption{Available \texttt{cite} variants.}
+\caption{Available \texttt{cite} variants; the exact citation style
+    depends on whether the bibliography style is numeric or author-year.}
 \label{tbl:natbib:cite}
-\begin{tabular}{ll}\toprule
+\centering
+\begin{tabular}{lp{3.25in}}\toprule
 Variant & Result \\
 \midrule
-\verb+\cite+ & Parenthetical citation (\eg \cite{kiczales-1997-aop}) \\
-\verb+\citet+ & Textual citation: includes author (\eg \citet{kiczales-1997-aop}) \\
+% We cheat here to simulate the cite/citep/citet for APA-like styles
+\verb+\cite+ & Parenthetical citation (\eg ``\cite{kiczales-1997-aop}''
+    or ``(\citeauthor{kiczales-1997-aop} \citeyear{kiczales-1997-aop})'') \\
+\verb+\citet+ & Textual citation: includes author (\eg
+    ``\citet{kiczales-1997-aop}'' or
+    or ``\citeauthor{kiczales-1997-aop} (\citeyear{kiczales-1997-aop})'') \\
 \verb+\citet*+ & Textual citation with unabbreviated author list \\
-\verb+\citep+ & Parenthetical citation (\eg \citep{kiczales-1997-aop}) \\
+\verb+\citealt+ & Like \verb+\citet+ but without parentheses \\
+\verb+\citep+ & Parenthetical citation (\eg ``\cite{kiczales-1997-aop}''
+    or ``(\citeauthor{kiczales-1997-aop} \citeyear{kiczales-1997-aop})'') \\
 \verb+\citep*+ & Parenthetical citation with unabbreviated author list \\
-\verb+\citeauthor+ & Author only (\eg \citeauthor{kiczales-1997-aop}) \\
-\verb+\citeyear+ & Year of citation (\eg \citeyear{kiczales-1997-aop}) \\
+\verb+\citealp+ & Like \verb+\citep+ but without parentheses \\
+\verb+\citeauthor+ & Author only (\eg ``\citeauthor{kiczales-1997-aop}'') \\
+\verb+\citeauthor*+ & Unabbreviated authors list 
+    (\eg ``\citeauthor*{kiczales-1997-aop}'') \\
+\verb+\citeyear+ & Year of citation (\eg ``\citeyear{kiczales-1997-aop}'') \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -254,25 +268,30 @@ necessary to properly use \verb+\citet{}+, \verb+\citep{}+,
 There are also packages available to place citations on a per-chapter
 basis (\latexpackage{bibunits}), as footnotes (\latexpackage{footbib}),
 and inline (\latexpackage{bibentry}).
+Those who wish to exert maximum control over their bibliography
+style should see the amazing \latexpackage{custom-bib} package.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Typesetting Tables}
 \label{sec:TypesettingTables}
 
-Unfortunately \citet{lamport-1994-ladps} made one grievous mistake
-in \LaTeX: his suggested manner for typesetting tables produce
-abysmally ugly abominations.  These suggestions have unfortunately
-been replicated in most \LaTeX\ tutorials.  Fortunately these
-abominations are easily avoided by simply ignoring his instructions
-on horizontal and vertical rules (specifically the use of \verb+\hline+
-and \verb+|+) and using the \latexpackage{booktabs} package instead.
+\citet{lamport-1994-ladps} made one grievous mistake
+in \LaTeX: his suggested manner for typesetting tables produces
+typographic abominations.  These suggestions have unfortunately
+been replicated in most \LaTeX\ tutorials.  These
+abominations are easily avoided simply by ignoring his examples
+illustrating the use of horizontal and vertical rules (specifically
+the use of \verb+\hline+ and \verb+|+) and using the
+\latexpackage{booktabs} package instead.
 
-The \latexpackage{booktabs} package provides new rules, producing
-tables in the form used by most professionally-edited journals.
-\autoref{tbl:natbib:cite} and \autoref{tbl:LaTeX:Symbols} are two
+The \latexpackage{booktabs} package helps produce tables in the form
+used by most professionally-edited journals through the use of
+three new types of dividing lines, or \emph{rules}.
+% There are times that you don't want to use \autoref{}
+Tables~\ref{tbl:natbib:cite} and~\ref{tbl:LaTeX:Symbols} are two
 examples of tables typeset with the \latexpackage{booktabs} package.
 The \latexpackage{booktabs} package provides three new commands
-intended to replace the use of \verb+\hline+:
+for producing rules:
 \verb+\toprule+ for the rule to appear at the top of the table,
 \verb+\midrule+ for the middle rule following the table header,
 and \verb+\bottomrule+ for the bottom-most at the end of the table.
@@ -415,25 +434,32 @@ At this point, you should be ready to go.  Other handy web resources:
 \begin{itemize}
 \item \webref{http://www.ctan.org}{\ac{CTAN}} is \emph{the} comprehensive
     archive site for all things related to \TeX\ and \LaTeX. 
-    Should you have a particular need, somebody else is almost
-    certainly to have had the same need before you.
+    Should you have some particular requirement, somebody else is
+    almost certainly to have had the same requirement before you,
+    and the solution will be found on \ac{CTAN}.
+
+\item An online
+    \webref{http://www.ctan.org/get/info/latex2e-help-texinfo/latex2e.html}{%
+	reference to \LaTeX\ commands} provides a handy quick-reference
+    to the standard \LaTeX\ commands.
+
+\item The list of 
+    \webref{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=interruptlist}{%
+	Frequently Asked Questions about \TeX\ and \LaTeX}
+    can save you a huge amount of time in finding solutions to
+    common problems.
 
 \item The \webref{http://www.tug.org/tetex/tetex-texmfdist/doc/}{te\TeX\
     documentation guide} features a very handy list of the most useful
     packages for \LaTeX\ as found in \ac{CTAN}.
 
-\item An online
-    \webref{http://www.ctan.org/get/info/latex2e-help-texinfo/latex2e.html}{%
-	reference to \LaTeX\ commands}.
-
-\item The list of 
-    \webref{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=interruptlist}{%
-	Frequently Asked Questions about \TeX\ and \LaTeX}.
-
 \item The
 \webref{http://www.ctan.org/tex-archive/macros/latex/required/graphics/grfguide.pdf}{\texttt{color}}
-    package, part of the graphics bundle, provides for changing text
-    and background colours.
+    package, part of the graphics bundle, provides handy commands
+    for changing text and background colours.  Simply changing
+    text to various levels of grey can have a very 
+    \textcolor{greytext}{dramatic effect}.
+
 
 \item Chemists and those requiring chemical formula should definitely
     checkout the \latexpackage{mhchem} package.
