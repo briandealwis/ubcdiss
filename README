@@ -1,13 +1,20 @@
 This distribution provides a LaTeX template for writing a dissertation
 conformant with UBC's specifications (as of June 2008).  The template
 uses only packages available in most LaTeX distributions such as
-MacTeX, MikTeX, and TeXLive.
+MacTeX, MikTeX, and TeXLive. 
 
 The template has some documentation in doc.pdf.  This documentation
 is itself written using the template, and the content is found in
 ack.tex, glossary.tex, and intro.tex.  diss.tex is the main file
 but all the content is contained in the other files which are included
 from diss.tex using \include. 
+
+Note that this is only a template: you'll likely need to add
+additional packages to manage the particular quirks required for
+your dissertation.  There are some pointers in diss.tex and doc.pdf
+to useful packages for handling common problems/requirements.  You
+may need to manually install these for your distribution; teTeX in
+particular seems to ship with a much smaller package base.
 
 FoGS has very strict formatting requirements, and these requirements
 may change.  You should review the various FoGS Thesis Specifications

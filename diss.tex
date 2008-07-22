@@ -9,7 +9,8 @@
 %% The ubcdiss class provides several options:
 %%   fogscopy
 %%       set parameters to exactly how FoGS specifies
-%%       e.g., single-sided, page-numbering starts on title page
+%%       e.g., single-sided, page-numbering starts on title page.
+%%       This can be tested by `\iffogscopy ... \else ... \fi'
 %%   10pt, 11pt, 12pt
 %%       set default font size
 %%   oneside, twoside
@@ -29,7 +30,7 @@
 \documentclass[fogscopy,onehalfspacing,11pt]{ubcdiss}
 
 % For your own copies (looks nicer)
-%\documentclass[balanced,twoside,11pt]{ubcdiss}
+% \documentclass[balanced,twoside,11pt]{ubcdiss}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,18 +100,12 @@
 %% Recommended packages
 %%
 \usepackage{checkend}	% better error messages on left-open environments
-
-%% rotating: provides two environments, sidewaystable and sidewaysfigure,
-%% for typesetting tables and figures in landscape mode.  
-\usepackage{rotating}
+\usepackage{graphicx}	% for incorporating external images
 
 %% booktabs: provides some special commands for typesetting tables
 %% as used in excellent journals.  Ignore the examples in the Lamport
 %% book!
 \usepackage{booktabs}
-
-%% enumitem: support pausing and resuming enumerate environments.
-\usepackage{enumitem}
 
 %% listings: useful support for including source code listings, with
 %% optional special keyword formatting.  The \lstset{} causes
@@ -177,12 +172,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Possibly useful packages
+%% Possibly useful packages: you may need to explicitly install
+%% these from CTAN if they aren't part of your distribution;
+%% teTeX seems to ship with a smaller base than MikTeX and MacTeX.
 %%
 %\usepackage{pdfpages}	% insert pages from other PDF files
 %\usepackage{longtable}	% provide tables spanning multiple pages
 %\usepackage{chngpage}	% support changing the page widths on demand
 %\usepackage{tabularx}	% an enhanced tabular environment
+
+%% enumitem: support pausing and resuming enumerate environments.
+%\usepackage{enumitem}
+
+%% rotating: provides two environments, sidewaystable and sidewaysfigure,
+%% for typesetting tables and figures in landscape mode.  
+%\usepackage{rotating}
+
+%% subfigure: provides for including subfigures within a figure,
+%% and includes being able to separately reference the subfigures.
+%\usepackage{subfigure}
 
 %% ragged2e: provides several new new commands \Centering, \RaggedLeft,
 %% \RaggedRight and \justifying and new environments Center, FlushLeft,

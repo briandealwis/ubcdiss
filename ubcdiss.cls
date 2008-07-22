@@ -91,6 +91,7 @@
 \ProcessOptions\relax
 
 % fix a likely LaTeX bug: seemingly necessary when using book
+% comment the following line if it causes errors during build
 \newcounter{parentequation}
 
 \LoadClass{book}
@@ -106,11 +107,13 @@
 \RequirePackage{textcase}	% for lower- and upper-casing
 
 % tocbibind: cause list of figures, tables in the toc
-% We used to use the nottoc so that the toc wouldn't be itself in the
-% toc.  But FoGS apparently changed their mind and now want it there.
-% Should they change their minds again, use the following:
-%    \RequirePackage[nottoc]{tocbibind}
+% FoGS apparently now require the ToC to be itself listed in the ToC,
+% which seems redundant (why would you need to look in the ToC for the ToC?)
+\iffogscopy
 \RequirePackage{tocbibind}
+\else
+\RequirePackage[nottoc]{tocbibind}
+\fi
 
 % Table of Contents must be labelled "Table of Contents"
 \renewcommand{\contentsname}{Table of Contents}
