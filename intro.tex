@@ -427,7 +427,92 @@ A simpler alternative strategy is to create a GoogleMail account
 and periodically mail yourself zipped copies of your dissertation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\section{Recommended Packages}
+
+The real strength to \LaTeX\ is found in the myriad of free add-on
+packages available for handling special formatting requirements.
+In this section we list some helpful packages.
+
+\subsection{Typesetting}
+
+\begin{description}
+\item[\latexpackage{enumitem}:]
+    Supports pausing and resuming enumerate environments.
+
+\item[\latexpackage{ulem}:]
+    Provides two new commands for striking out and crossing out text
+    (\verb+\sout{text}+ and \verb+\xout{text}+ respectively)
+    The package should likely
+    be used as follows:
+    \begin{verbatim}
+    \usepackage[normalem,normalbf]{ulem}
+    \end{verbatim}
+    to prevent the package from redefining the emphasis and bold fonts.
+
+\item[\latexpackage{chngpage}:]
+    Support changing the page widths on demand.
+
+\item[\latexpackage{mhchem}:] 
+    Support for typesetting chemical formulae and reaction equations.
+
+\end{description}
+
+Although not a package, the
+\webref{http://www.ctan.org/tex-archive/support/latexdiff/}{\texttt{latexdiff}}
+command is very useful for creating changebar'd versions of your
+dissertation.
+
+
+\subsection{Figures, Tables, and Document Extracts}
+
+\begin{description}
+\item[\latexpackage{pdfpages}:]
+    Insert pages from other PDF files.  Allows referencing the extracted
+    pages in the list of figures, adding labels to reference the page
+    from elsewhere, and add borders to the pages.
+
+\item[\latexpackage{subfigure}:]
+    Provides for including subfigures within a figure, and includes
+    being able to separately reference the subfigures.
+
+\item[\latexpackage{rotating}:]
+    Provides two environments, sidewaystable and sidewaysfigure,
+    for typesetting tables and figures in landscape mode.  
+
+\item[\latexpackage{longtable}:]
+    Support for long tables that span multiple pages.
+
+\item[\latexpackage{tabularx}:]
+    Provides an enhanced tabular environment with auto-sizing columns.
+
+\item[\latexpackage{ragged2e}:]
+    Provides several new commands for setting ragged text (\eg forms
+    of centered or flushed text) that can be used in tabular
+    environments and that support hyphenation.
+
+\end{description}
+
+
+\subsection{Bibliography Related Packages}
+
+\begin{description}
+\item[\latexpackage{bibunits}:]
+    Support having per-chapter bibliographies.
+
+\item[\latexpackage{footbib}:]
+    Cause cited works to be rendered using footnotes.
+
+\item[\latexpackage{bibentry}:] 
+    Support placing the details of a cited work in-line.
+
+\item[\latexpackage{custom-bib}:]
+    Generate a custom style for your bibliography.
+
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moving On}
 \label{sec:Conclusions}
 
 At this point, you should be ready to go.  Other handy web resources:
@@ -436,7 +521,8 @@ At this point, you should be ready to go.  Other handy web resources:
     archive site for all things related to \TeX\ and \LaTeX. 
     Should you have some particular requirement, somebody else is
     almost certainly to have had the same requirement before you,
-    and the solution will be found on \ac{CTAN}.
+    and the solution will be found on \ac{CTAN}.  The links to
+    various packages in this document are all to \ac{CTAN}.
 
 \item An online
     \webref{http://www.ctan.org/get/info/latex2e-help-texinfo/latex2e.html}{%
@@ -460,9 +546,6 @@ At this point, you should be ready to go.  Other handy web resources:
     text to various levels of grey can have a very 
     \textcolor{greytext}{dramatic effect}.
 
-
-\item Chemists and those requiring chemical formula should definitely
-    checkout the \latexpackage{mhchem} package.
 
 \item If you're really keen, you might want to join the
     \webref{http://www.tug.org}{\TeX\ Users Group}.
