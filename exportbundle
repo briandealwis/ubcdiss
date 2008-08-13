@@ -1,5 +1,5 @@
 #!/bin/sh
-DEST=.
+DEST=${1:-.}
 
 if [ ! -d .bzr ]; then
     echo "'$0' is only for the maintainer"
