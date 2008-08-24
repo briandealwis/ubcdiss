@@ -1,7 +1,8 @@
           NAME1 = diss
        PRODUCT1 = $(NAME1).pdf
      TEXSOURCE1 = $(NAME1).tex \
-		    abstract.tex ack.tex glossary.tex intro.tex version.tex
+		    abstract.tex ack.tex glossary.tex intro.tex version.tex \
+		    ubcdiss.cls
            BBL1 = $(NAME1).bbl
 
 #         NAME2 =

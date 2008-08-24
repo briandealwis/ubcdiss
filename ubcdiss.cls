@@ -94,7 +94,7 @@
 % comment the following line if it causes errors during build
 \newcounter{parentequation}
 
-\LoadClass{book}
+\LoadClass[letterpaper]{book}
 \RequirePackage{setspace}
 
 \ifb@l@nced
@@ -139,8 +139,10 @@
 \pagestyle{plain}
 
 
-%% The title page
+%% The title page; we inherit \title and \author, and add many more
 \makeatletter
+
+% defaults
 \newcommand{\@subtitle}{}
 \newcommand{\@previousdegrees}{}
 \newcommand{\@degreetitle}{%
@@ -156,6 +158,17 @@
 	Specify \protect\campus\{\}\space in your dissertation
 	metadata section.}%
     \emph{missing campus}}
+\newcommand{\@subye@r}{
+    \ClassError{ubcdiss}{Missing submission year}{%
+	Specify \protect\submissionyear\space in your dissertation
+	metadata section.}
+    \emph{missing submission year}}
+\newcommand{\@submonth}{
+    \ClassError{ubcdiss}{Missing submission month}{%
+	Specify \protect\submissionmonth\space in your dissertation
+	metadata section.}
+    \emph{missing submission month}}
+
 \newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
 \newcommand{\previousdegree}[1]{\@addto{@previousdegrees}{#1\par}}
 \newcommand{\degreetitle}[1]{\renewcommand{\@degreetitle}{#1}}
@@ -164,17 +177,19 @@
 \newcommand{\department}[1]{\renewcommand{\dep@rtment}{#1}}
 \newcommand{\program}[1]{\department{#1}}
 \newcommand{\campus}[1]{\renewcommand{\c@mpus}{#1}}
+\newcommand{\submissionyear}[1]{\renewcommand{\@subye@r}{#1}}
+\newcommand{\submissionmonth}[1]{\renewcommand{\@submonth}{#1}}
 
 % Try to have some compatibility with Forbes' class
 \newcommand{\institutionaddress}[1]{%
     \ClassWarning{ubcdiss}{Ignoring \protect\institutionaddress:
 	use \protect\campus\space instead}}
-\newcommand{\copyrightyear}[1]{%
-    \ClassWarning{ubcdiss}{Ignoring \protect\copyrightyear:
-	use \protect\date instead}}
 \newcommand{\submitdate}[1]{%
     \ClassWarning{ubcdiss}{Ignoring \protect\submitdate:
-	use \protect\date instead}}
+	use \protect\submissionyear and \protect\submissionmonth instead}}
+\renewcommand{\date}[1]{%
+    \ClassWarning{ubcdiss}{Ignoring \protect\date:
+	use \protect\submissionyear and \protect\submissionmonth instead}}
 \newcommand{\advisor}[1]{%
     \ClassWarning{ubcdiss}{Ignoring \protect\advisor}}
 \newcommand{\advisortitle}[1]{%
@@ -212,9 +227,9 @@
 
 	{\large \@institution}\\
 	{\large (\c@mpus)}\\[1em]
-	{\large \@date}\\
+	{\large \@submonth\ \@subye@r}\\[1em]
 
-	{\large \textcopyright\ \@author}
+	{\large \textcopyright\ \@author, \@subye@r}
     \end{center}
     \vfill\null
     \end{titlepage}
