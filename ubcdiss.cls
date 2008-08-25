@@ -90,10 +90,6 @@
 \InputIfFileExists{ubcdiss.cfg}{}{}
 \ProcessOptions\relax
 
-% fix a likely LaTeX bug: seemingly necessary when using book
-% comment the following line if it causes errors during build
-\newcounter{parentequation}
-
 \LoadClass[letterpaper]{book}
 \RequirePackage{setspace}
 
