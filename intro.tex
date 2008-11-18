@@ -75,37 +75,6 @@ web references with a footnoted \acs{URL} (\verb+\webref{url}{text}+),
 as well as definitions specific to this documentation
 (\verb+\latexpackage{}+).
 
-\subsection{Changing Page Widths and Heights}
-
-The \class{ubcdiss} class is based on the standard \LaTeX\ \class{book}
-class that selects a line-width to carry approximately 66~characters
-per line.  This character density is claimed to have a pleasing
-appearance and also supports more rapid
-reading~\cite{bringhurst-2002-teots}.  I would recommend that you
-not change the line-widths!
-
-Some students are unfortunately saddled with misguided supervisors
-or committee members whom believe that documents should have the
-narrowest margins possible.  The \latexpackage{geometry} package is
-helpful in such cases.  Using this package is as simple as:
-\begin{lstlisting}
-    \usepackage[margin=1.25in,top=1.25in,bottom=1.25in]{geometry}
-\end{lstlisting}
-You should check the package's documentation for more complex uses.
-
-There are occasions where it becomes necessary to make temporary
-changes to the page width, such as to accomodate a larger formula. 
-The \latexmiscpackage{chngpage} package provides an \env{adjustwidth}
-environment that does just this.  For example:
-\begin{lstlisting}
-    % Expand left and right margins by 0.75in
-    \begin{adjustwidth}{-0.75in}{-0.75in}
-    % Must adjust the perceived column width for LaTeX to get with it.
-    \addtolength{\columnwidth}{1.5in}
-    \[ an extra long math formula \]
-    \end{adjustwidth}
-\end{lstlisting}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Making Cross-References}
 \label{sec:CrossReferences}
@@ -397,6 +366,76 @@ of symbols and accented characters is available at:
 \bottomrule
 \end{tabular}
 \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Changing Page Widths and Heights}
+
+The \class{ubcdiss} class is based on the standard \LaTeX\ \class{book}
+class that selects a line-width to carry approximately 66~characters
+per line.  This character density is claimed to have a pleasing
+appearance and also supports more rapid
+reading~\cite{bringhurst-2002-teots}.  I would recommend that you
+not change the line-widths!
+
+\subsection{The \texttt{geometry} Package}
+
+Some students are unfortunately saddled with misguided supervisors
+or committee members whom believe that documents should have the
+narrowest margins possible.  The \latexpackage{geometry} package is
+helpful in such cases.  Using this package is as simple as:
+\begin{lstlisting}
+    \usepackage[margin=1.25in,top=1.25in,bottom=1.25in]{geometry}
+\end{lstlisting}
+You should check the package's documentation for more complex uses.
+
+\subsection{Changing Page Layout Values By Hand}
+
+There are some miserable students with requirements for page layouts
+that vary throughout the document.  Unfortunately the
+\latexpackage{geometry} can only be specified once, in the document's
+preamble.  Such miserable students must set \LaTeX's layout parameters
+by hand:
+\begin{lstlisting}
+    \setlength{\topmargin}{-.75in}
+    \setlength{\headsep}{0.25in}
+    \setlength{\headheight}{15pt}
+    \setlength{\textheight}{9in}
+    \setlength{\footskip}{0.25in}
+    \setlength{\footheight}{15pt}
+
+    % The *sidemargin values are relative to 1in; so the following
+    % results in a 0.75 inch margin
+    \setlength{\oddsidemargin}{-0.25in}
+    \setlength{\evensidemargin}{-0.25in}
+    \setlength{\textwidth}{7in}       % 1.1in margins (8.5-2*0.75)
+\end{lstlisting}
+These settings necessarily require assuming a particular page height
+and width; in the above, the setting for \verb+\textwidth+ assumes
+a \textsc{US} Letter with an 8.5'' width.
+The \latexpackage{geometry} package simply uses the page height and
+other specified values to derive the other layout values.
+The
+\href{http://tug.ctan.org/tex-archive/macros/latex/required/tools/layout.pdf}{\texttt{layout}}
+package provides a
+handly \verb+\layout+ command to show the current page layout
+parameters. 
+
+
+\subsection{Making Temporary Changes to Page Layout}
+
+There are occasions where it becomes necessary to make temporary
+changes to the page width, such as to accomodate a larger formula. 
+The \latexmiscpackage{chngpage} package provides an \env{adjustwidth}
+environment that does just this.  For example:
+\begin{lstlisting}
+    % Expand left and right margins by 0.75in
+    \begin{adjustwidth}{-0.75in}{-0.75in}
+    % Must adjust the perceived column width for LaTeX to get with it.
+    \addtolength{\columnwidth}{1.5in}
+    \[ an extra long math formula \]
+    \end{adjustwidth}
+\end{lstlisting}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Keeping Track of Older Versions with Revision Control}
