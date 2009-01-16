@@ -12,6 +12,20 @@ A. Your TeX distribution has an old version of url.sty.  Find a more
    and just copy it to this directory.
 
 
+Q. I get a warning from <<<some package>>> that <<<some option>>>
+   is obsolete.  Is this ok?
+
+A. Yes.  These options were necessary for my LaTeX installation
+   (MacTeX 2007), and I'd rather leave them rather than have a
+   student's thesis rejected because they used an older LaTeX.
+
+
+Q. Can I modify this template for use at a different university?
+   Can I distribute the modified template?
+
+A. By all means.  This package has been released to the public domain
+   which means that you can do with it what you will!
+
 
 Notes on using XeTeX/XeLaTeX:
 =============================

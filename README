@@ -1,3 +1,6 @@
+ubcdiss -- a dissertation template for LaTeX
+============================================
+
 This distribution provides a LaTeX template for writing a dissertation
 conformant with UBC's specifications (as of June 2008).  The template
 uses only packages available in most LaTeX distributions such as
