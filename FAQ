@@ -9,7 +9,11 @@ A. Your TeX distribution has an old version of url.sty.  Find a more
    
     http://ctan.org/get/macros/latex/contrib/misc/url.sty
 
-   and just copy it to this directory.
+   and just copy it to this directory.  TeX/LaTeX first look in the
+   current directory for all included files, and then proceed to
+   look in the other configured locations.  You can also change the
+   standard locations by modifying your TEXINPUTS or texmf.cnf;
+   the details are far beyond the scope of this package.
 
 
 Q. I get a warning from <<<some package>>> that <<<some option>>>

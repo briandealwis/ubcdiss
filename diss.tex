@@ -42,10 +42,10 @@
 %% typewriter-style font.  Configuring fonts can be time
 %% consuming; we recommend skipping to END FONTS!
 %% 
-%% Should you be feeling brave and wish to use your platform's native
-%% fonts, see the commented out bits below for XeTeX (or XeLaTeX).
-%% This is not for the faint at heart.  And you should really be
-%% concentrating on writing!
+%% If you're feeling brave, have lots of time, and wish to use one
+%% your platform's native fonts, see the commented out bits below for
+%% XeTeX/XeLaTeX.  This is not for the faint at heart. 
+%% (And shouldn't you be writing? :-)
 %%
 
 %% NFSS font specification (New Font Selection Scheme)
@@ -102,9 +102,8 @@
 \usepackage{checkend}	% better error messages on left-open environments
 \usepackage{graphicx}	% for incorporating external images
 
-%% booktabs: provides some special commands for typesetting tables
-%% as used in excellent journals.  Ignore the examples in the Lamport
-%% book!
+%% booktabs: provides some special commands for typesetting tables as used
+%% in excellent journals.  Ignore the examples in the Lamport book!
 \usepackage{booktabs}
 
 %% listings: useful support for including source code listings, with
@@ -161,7 +160,7 @@
 
 %% The caption package provides support for varying how table and
 %% figure captions are typeset.
-\usepackage[format=hang,indention=-1cm,labelfont={bf},margin=1em,]{caption}
+\usepackage[format=hang,indention=-1cm,labelfont={bf},margin=1em]{caption}
 
 %% url: for typesetting URLs and smart(er) hyphenation.
 %% \url{http://...} 
@@ -188,9 +187,9 @@
 %% for typesetting tables and figures in landscape mode.  
 %\usepackage{rotating}
 
-%% subfigure: provides for including subfigures within a figure,
+%% subfig: provides for including subfigures within a figure,
 %% and includes being able to separately reference the subfigures.
-%\usepackage{subfigure}
+%\usepackage{subfig}
 
 %% ragged2e: provides several new new commands \Centering, \RaggedLeft,
 %% \RaggedRight and \justifying and new environments Center, FlushLeft,
@@ -223,11 +222,14 @@
 %% The `pagebackref' causes the references in the bibliography to have
 %% back-references to the citing page; `backref' puts the citing section
 %% number.  See further below for other examples of using hyperref.
+%% 2009/12/09: now use `linktocpage' (Jacek Kisynski): FoGS now prefers
+%%   that the ToC, LoF, LoT place the hyperlink on the page number,
+%%   rather than the entry text.
 \usepackage[bookmarks,bookmarksnumbered,%
     citebordercolor={0.8 0.8 0.8},filebordercolor={0.8 0.8 0.8},%
     linkbordercolor={0.8 0.8 0.8},pagebordercolor={0.8 0.8 0.8},%
     urlbordercolor={0.8 0.8 0.8},%
-    pagebackref%
+    pagebackref,linktocpage%
     ]{hyperref}
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used

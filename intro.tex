@@ -327,7 +327,16 @@ There are three items of note:
     import \textsc{gif}, \textsc{jpg}, and \textsc{pdf}.  The plain
     version of \texttt{latex} only supports \textsc{eps} files.
 
-\item The \verb+\caption+ provides a caption to the figure.
+\item The \verb+\caption+ provides a caption to the figure. 
+    This caption is normally listed in the List of Figures; you
+    can provide an alternative caption for the LoF by providing
+    an optional argument to the \verb+\caption+ like so:
+    \begin{lstlisting}
+    \caption[nice shortened caption for LoF]{%
+	longer detailed caption used for the figure}
+    \end{lstlisting}
+    \ac{FoGS} generally prefers shortened single-line captions
+    in the LoF: multiple-line captions are a bit unwieldy.
 
 \item The \verb+\label+ command provides for associating a unique, user-defined,
     and descriptive identifier to the figure.  The figure can be
@@ -417,7 +426,7 @@ other specified values to derive the other layout values.
 The
 \href{http://tug.ctan.org/tex-archive/macros/latex/required/tools/layout.pdf}{\texttt{layout}}
 package provides a
-handly \verb+\layout+ command to show the current page layout
+handy \verb+\layout+ command to show the current page layout
 parameters. 
 
 
@@ -438,8 +447,8 @@ environment that does just this.  For example:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Keeping Track of Older Versions with Revision Control}
-\label{sec:DissertationRevisionControl}.
+\section{Keeping Track of Versions with Revision Control}
+\label{sec:DissertationRevisionControl}
 
 Software engineers have used \acf{RCS} to track changes to their
 software systems for decades.  These systems record the changes to
@@ -510,9 +519,10 @@ dissertation.
     pages in the list of figures, adding labels to reference the page
     from elsewhere, and add borders to the pages.
 
-\item[\latexpackage{subfigure}:]
+\item[\latexpackage{subfig}:]
     Provides for including subfigures within a figure, and includes
-    being able to separately reference the subfigures.
+    being able to separately reference the subfigures.  This is a
+    replacement for the older \texttt{subfigure} environment.
 
 \item[\latexpackage{rotating}:]
     Provides two environments, sidewaystable and sidewaysfigure,
