@@ -9,7 +9,10 @@
 %% The ubcdiss class provides several options:
 %%   fogscopy
 %%       set parameters to exactly how FoGS specifies
-%%       e.g., single-sided, page-numbering starts on title page.
+%%         * single-sided
+%%         * page-numbering starts from title page
+%%         * the lists of figures and tables have each entry prefixed
+%%           with 'Figure' or 'Table'
 %%       This can be tested by `\iffogscopy ... \else ... \fi'
 %%   10pt, 11pt, 12pt
 %%       set default font size
@@ -26,7 +29,7 @@
 %%       graphics, etc.
 %%
 
-% For submission to the library
+% For submission to FoGS
 \documentclass[fogscopy,onehalfspacing,11pt]{ubcdiss}
 
 % For your own copies (looks nicer)

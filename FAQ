@@ -31,13 +31,34 @@ A. By all means.  This package has been released to the public domain
    which means that you can do with it what you will!
 
 
+Q. I hate that the Lists of Figures and Tables have all lines of the
+   entries indented by such a huge amount!
+   (Note: this is only enabled when 'fogscopy')
+
+A. First, be sure to use the optional argument on \caption to provide
+   shortened titles for the LoF & LoT:
+
+     \caption[shorten and sweet]{the much more lengthy caption
+	possible stretching for multiple lines}
+
+   Otherwise look in ubcdiss.cls for the lines with '\@tabprefixlen'.
+   Comment out the lines in Option 1 and uncomment those in Option 2
+   to cause subsequent lines in an entry to be typeset with a hanging
+   indent. 
+
+
 Notes on using XeTeX/XeLaTeX:
 =============================
 
-Many TeX distributions ship with an older version of XeTeX/XeLaTeX,
-and you may need to use a more recent version of XeTeX/XeLaTeX; I
-used 0.997.  If you're not a somewhat proficient C hacker, then
-find a capable friend.  The XeTeX source can be fetched from
+XeTeX is an enhanced TeX that can make use of your platform fonts.
+If you have a favourite font (I'm very partial to Adobe's Minion Pro),
+XeTeX provides an "easy" way to use them.
+
+I say "easy" as many TeX distributions ship with an older version
+of XeTeX/XeLaTeX, and you may need to use a more recent version of
+XeTeX/XeLaTeX; I used 0.997.  If you're not a somewhat proficient
+C hacker, then find a capable friend.  The XeTeX source can be
+fetched from
 
     http://scripts.sil.org/svn-public/xetex/TRUNK
 
@@ -48,3 +69,5 @@ your formats for the new xetex binary; the easiest way seems to be:
 
   $ sudo fmtutil-sys --refresh
 
+
+Please address questions to Brian de Alwis <bsd@acm.org>

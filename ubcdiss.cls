@@ -94,19 +94,65 @@
 
 % tocbibind: cause list of figures, tables in the toc
 % FoGS apparently now require the ToC to be itself listed in the ToC,
-% which seems redundant (why would you need to look in the ToC for the ToC?)
+% which seems redundant (why would you look for the ToC in the ToC?)
 \iffogscopy
 \RequirePackage{tocbibind}
 \else
 \RequirePackage[nottoc]{tocbibind}
 \fi
 
-% Table of Contents must be labelled "Table of Contents"
+\iffogscopy
+% FoGS requires the Table of Contents to be labelled
+% "Table of Contents" and not "Contents"
 \renewcommand{\contentsname}{Table of Contents}
 
-% FoGS wants each line of the ToC/LoT/LoF to have dotted leaders
+% FoGS wants each line of the ToC/LoT/LoF to have dotted leaders.
+% Ugh, looks like Word
 \RequirePackage{tocloft}        % typesetting of ToC, LoT, & LoF
 \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+%% FoGS now wants items in the LoF and LoT to be preceded by the entry type
+%% (e.g., "Figure 1.1  blah blah") (via Brett Eaton, 2010/04/16)
+%% We have two options for typesetting such entries:
+%%
+%%   Option 1: The first option is to cause all lines of the entry
+%%             to be indented by the the width of the label.  This
+%%             is a bit undesirable as the width of the label depends
+%%             on the label itself, and "Figure" and "Table" have
+%%             different widths.
+%%
+%%   Option 2: The second option is to typeset the entries using a
+%%      hanging indent.  Thus only the first line of the entries are
+%%      different between pages, and subsequent lines are the same.
+%%
+%% Typographic purists may prefer using Option 2.  But we've chosen
+%% Option 1 as we cannot change the spacing between the label and text
+%% to be sufficiently snug.  And people should provide shortened titles
+%% for their entries anyways.
+%
+% set the initial indents to 0: we'll need all the space we can get
+\setlength{\cfttabindent}{0em}\setlength{\cftfigindent}{0em}
+\newlength{\@figprefixlen}
+\renewcommand{\cfttabpresnum}{Table }
+\settowidth{\@figprefixlen}{\cfttabfont\cfttabpresnum}
+\newlength{\@tabprefixlen}
+\renewcommand{\cftfigpresnum}{Figure }
+\settowidth{\@tabprefixlen}{\cftfigfont\cftfigpresnum}
+%%
+%% OPTION 1: maintain a consistent indentation for all lines of an entry
+%%           (comment out the following lines if you choose Option 2)
+\addtolength{\cfttabnumwidth}{\@figprefixlen}
+\addtolength{\cftfignumwidth}{\@tabprefixlen}
+%%
+%% OPTION 2: typeset subsequent lines in an entry with a hanging indent
+%%   (comment out the following lines if you choose Option 1)
+% It's a bit unfortunate that tocloft doesn't use a macro for
+% typesetting the field; it'd be nice to make the text a bit more
+% snug to the entry number.
+%\renewcommand{\cfttabaftersnumb}{\makebox[\@figprefixlen][l]{}}
+%\renewcommand{\cftfigaftersnumb}{\makebox[\@tabprefixlen][l]{}}
+
+\fi  % fogscopy
 
 % From <http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement>
 % LaTeX per default only allows a part of the top of a text-page
