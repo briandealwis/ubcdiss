@@ -22,7 +22,7 @@
 #		    ${GIFFIGURES:C/\.gif/.pdf/g} \
 #		    ${SVGFIGURES:C/\.svg/.pdf/g}
 
-all: $(PRODUCT1)
+all: doc.pdf $(PRODUCT1)
 
 $(NAME1).pdf: $(TEXSOURCE1) $(BBL1) $(PDFFIGURES)
 $(NAME1).dvi: $(TEXSOURCE1) $(BBL1) $(EPSFIGURES)
@@ -49,6 +49,7 @@ BIBLATEX=	$(PDFLATEX)
 BIBTEX=		bibtex -min-crossref=1000
 RM=		rm -f
 MV=		mv
+CP=		cp -p
 
 .tex.pdf:
 	$(PDFLATEX) $(LATEXFLAGS) $<
@@ -62,3 +63,5 @@ MV=		mv
 	$(BIBTEX) $*
 	$(RM) $*.aux $*.dvi $*.pdf
 
+doc.pdf: diss.pdf
+	$(CP) $> $@ 
