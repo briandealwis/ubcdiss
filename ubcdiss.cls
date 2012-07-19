@@ -109,6 +109,7 @@
 % FoGS wants each line of the ToC/LoT/LoF to have dotted leaders.
 % Ugh, looks like Word
 \RequirePackage[titles]{tocloft}        % typesetting of ToC, LoT, & LoF
+\renewcommand{\cftpartdotsep}{\cftdotsep}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
 %% FoGS now wants items in the LoF and LoT to be preceded by the entry type
