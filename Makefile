@@ -53,7 +53,7 @@ CP=		cp -p
 
 .tex.pdf:
 	$(PDFLATEX) $(LATEXFLAGS) $<
-	@while egrep -q 'LaTeX Warning:.*Rerun|Rerun to get citations correct' $*.log; do \
+	@while egrep -q 'LaTeX Warning:.*Rerun|Rerun to get' $*.log; do \
 	       echo $(PDFLATEX) $<; \
 	      $(PDFLATEX) $(LATEXFLAGS) $< || exit $$?; \
 	done
