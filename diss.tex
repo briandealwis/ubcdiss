@@ -7,13 +7,13 @@
 %!TEX encoding = UTF-8 Unicode
 
 %% The ubcdiss class provides several options:
-%%   fogscopy
-%%       set parameters to exactly how FoGS specifies
+%%   gpscopy (aka fogscopy)
+%%       set parameters to exactly how GPS specifies
 %%         * single-sided
 %%         * page-numbering starts from title page
 %%         * the lists of figures and tables have each entry prefixed
 %%           with 'Figure' or 'Table'
-%%       This can be tested by `\iffogscopy ... \else ... \fi'
+%%       This can be tested by `\ifgpscopy ... \else ... \fi'
 %%   10pt, 11pt, 12pt
 %%       set default font size
 %%   oneside, twoside
@@ -29,8 +29,8 @@
 %%       graphics, etc.
 %%
 
-% For submission to FoGS
-\documentclass[fogscopy,onehalfspacing,11pt]{ubcdiss}
+% For submission to GPS
+\documentclass[gpscopy,onehalfspacing,11pt]{ubcdiss}
 
 % For your own copies (looks nicer)
 % \documentclass[balanced,twoside,11pt]{ubcdiss}
@@ -225,7 +225,7 @@
 %% The `pagebackref' causes the references in the bibliography to have
 %% back-references to the citing page; `backref' puts the citing section
 %% number.  See further below for other examples of using hyperref.
-%% 2009/12/09: now use `linktocpage' (Jacek Kisynski): FoGS now prefers
+%% 2009/12/09: now use `linktocpage' (Jacek Kisynski): GPS now prefers
 %%   that the ToC, LoF, LoT place the hyperlink on the page number,
 %%   rather than the entry text.
 \usepackage[bookmarks,bookmarksnumbered,%
@@ -300,7 +300,7 @@
 \institution{The University Of British Columbia}
 \campus{Vancouver}
 
-\faculty{The Faculty of Graduate Studies}
+\faculty{The Faculty of XXX}
 \department{Basket Weaving}
 \submissionmonth{April}
 \submissionyear{2192}

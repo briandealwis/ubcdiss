@@ -19,9 +19,9 @@ to useful packages for handling common problems/requirements.  You
 may need to manually install these for your distribution; teTeX in
 particular seems to ship with a much smaller package base.
 
-FoGS has very strict formatting requirements, and these requirements
-may change.  You should review the various FoGS Thesis Specifications
-and Formatting Requirements.  FoGS is very lenient with font choice,
+GPS has very strict formatting requirements, and these requirements
+may change.  You should review the various GPS Thesis Specifications
+and Formatting Requirements.  GPS is very lenient with font choice,
 as long as the fonts are used consistently.
 
     http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/structure-ubc-theses-dissertations
@@ -39,7 +39,7 @@ packages found in most LaTeX distributions such as MacTeX, MikTeX,
 and TeXLive.  My thanks are owed to the countless volunteers who
 write and maintain the many TeX packages!
 
-Please let me know if FoGS requires you to make formatting or
+Please let me know if GPS requires you to make formatting or
 organization changes: I'll fold those changes into the template for
 future students.
 

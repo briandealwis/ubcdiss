@@ -5,9 +5,9 @@
 %% this class builds on top of the standard LaTeX book class and should have
 %% better compatibility with standard LaTeX packages.
 %%
-%% FoGS Thesis Specifications and Formatting Requirements
-%% <http://www.grad.ubc.ca/students/thesis/index.asp?menu=000,000,000,000>
-%% <http://www.grad.ubc.ca/students/thesis/index.asp?menu=005,000,000,000>
+%% GPS Thesis Specifications and Formatting Requirements
+%% <https://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/structure-ubc-theses-dissertations>
+%% <https://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/formatting-requirements>
 %% 
 %% Useful documents:
 %%  * LaTeX2e for class and package writers
@@ -18,7 +18,9 @@
 
 %% Options that can be specified with the documentclass
 %%   balanced         cause text of each page to be centred
-%%   fogscopy         special weird formatting as demanded by FoGS
+%%   gpscopy          special weird formatting as demanded by GPS
+%%                    (aka fogscopy from when GPS was the Faculty of
+%%                    Graduate Studies)
 %%   singlespacing    typeset text single spaced
 %%   onehalfspacing   typeset text line-and-a-half spacing
 %%   doublespacing    typeset text double spaced
@@ -44,15 +46,21 @@
   \expandafter\xdef\csname#1\endcsname{\the\toks1 \the\toks2 }
 }
 
-% cause the text of each page to be centred; only effective if using twosided
+% balanced: cause the text of each page to be centred; only effective
+% if using twosided
 \newif\ifb@l@nced\b@l@ncedfalse
-\newif\iffogscopy\fogscopyfalse
-
 \DeclareOption{balanced}{\b@l@ncedtrue}
 
-% fogscopy: default is to use onesided
+% gpscopy: default is to use onesided
+\newif\ifgpscopy\gpscopyfalse
+\DeclareOption{gpscopy}{
+    \gpscopytrue%
+    \PassOptionsToClass{oneside}{book}}
+% fogscopy kept for backwards compatibility
+\def\iffogscopy{\ifgpscopy}
 \DeclareOption{fogscopy}{
-    \fogscopytrue%
+    \ClassWarning{ubcdiss}{‘\CurrentOption’ now called 'gpscopy'}
+    \gpscopytrue%
     \PassOptionsToClass{oneside}{book}}
 
 % Set the body text to the specified spacing.  Users can explictly specify
@@ -93,26 +101,26 @@
 \RequirePackage{textcase}	% for lower- and upper-casing
 
 % tocbibind: cause list of figures, tables in the toc
-% FoGS apparently now require the ToC to be itself listed in the ToC,
+% GPS apparently now require the ToC to be itself listed in the ToC,
 % which seems redundant (why would you look for the ToC in the ToC?)
-\iffogscopy
+\ifgpscopy
 \RequirePackage{tocbibind}
 \else
 \RequirePackage[nottoc]{tocbibind}
 \fi
 
-\iffogscopy
-% FoGS requires the Table of Contents to be labelled
+\ifgpscopy
+% GPS requires the Table of Contents to be labelled
 % "Table of Contents" and not "Contents"
 \renewcommand{\contentsname}{Table of Contents}
 
-% FoGS wants each line of the ToC/LoT/LoF to have dotted leaders.
+% GPS wants each line of the ToC/LoT/LoF to have dotted leaders.
 % Ugh, looks like Word
 \RequirePackage[titles]{tocloft}        % typesetting of ToC, LoT, & LoF
 \renewcommand{\cftpartdotsep}{\cftdotsep}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
-%% FoGS now wants items in the LoF and LoT to be preceded by the entry type
+%% GPS now wants items in the LoF and LoT to be preceded by the entry type
 %% (e.g., "Figure 1.1  blah blah") (via Brett Eaton, 2010/04/16)
 %% We have two options for typesetting such entries:
 %%
@@ -153,7 +161,7 @@
 %\renewcommand{\cfttabaftersnumb}{\makebox[\@figprefixlen][l]{}}
 %\renewcommand{\cftfigaftersnumb}{\makebox[\@tabprefixlen][l]{}}
 
-\fi  % fogscopy
+\fi  % gpscopy
 
 % From <http://dcwww.camd.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#figplacement>
 % LaTeX per default only allows a part of the top of a text-page
@@ -184,7 +192,7 @@
 	metadata section.}
     \emph{missing degree title}}
 \newcommand{\@institution}{The University of British Columbia}
-\newcommand{\f@culty}{The Faculty of Graduate Studies}
+\newcommand{\f@culty}{Graduate and Postdoctoral Studies}
 \newcommand{\dep@rtment}{}
 \newcommand{\c@mpus}{%
     \ClassError{ubcdiss}{Missing campus name}{%
@@ -229,10 +237,10 @@
     \ClassWarning{ubcdiss}{Ignoring \protect\advisortitle}}
 
 \renewcommand{\maketitle}{%
-    % For some reason FoGS thinks the title page should be page 1
+    % For some reason GPS thinks the title page should be page 1
     % but \frontmatter causes the page count to be reset.  So
     % we do it here, and forbid use of \frontmatter
-    \iffogscopy\frontmatter\fi
+    \ifgpscopy\frontmatter\fi
     \pagestyle{empty}	% in case of \cleardoublepage in end-titlepage
     \begin{titlepage}
     \null\vfil\par
@@ -266,7 +274,7 @@
     \end{center}
     \vfill\null
     \end{titlepage}
-    \iffogscopy\setcounter{page}{2}\else\frontmatter\fi
+    \ifgpscopy\setcounter{page}{2}\else\frontmatter\fi
     \pagestyle{plain}
     \renewcommand{\frontmatter}{%
 	\ClassError{ubcdiss}{frontmatter should not be used}}

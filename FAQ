@@ -34,7 +34,7 @@ A. By all means.  This package has been released to the public domain
 
 Q. I hate that the Lists of Figures and Tables have all lines of the
    entries indented by such a huge amount!
-   (Note: this is only enabled when 'fogscopy')
+   (Note: this is only enabled when 'gpscopy')
 
 A. First, be sure to use the optional argument on \caption to provide
    shortened titles for the LoF & LoT:
