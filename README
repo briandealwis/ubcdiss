@@ -49,7 +49,7 @@ really need to find a local LaTeX wizard. Before reporting a problem,
 please ensure that:
 
  1. you have the latest version of the template (see the abstract
-    in doc.pdf or version.tex),
+    in doc.pdf),
  2. you are using the latest version of your TeX distribution,
  2. your question isn't answered in the FAQ file, and
  3. you've exhausted your local LaTeX wizard's help.  Tip: You can
@@ -57,8 +57,7 @@ please ensure that:
 
 When reporting a problem BE SURE TO INCLUDE:
 
- 1. the version number of this template (see the abstract in doc.pdf or
-    the version.tex),
+ 1. the version used of this template
  2. details on the operating system and TeX distribution you are using 
     (e.g., Windows XP and MikTeX 2.5, SuSE Linux 10 and its bundled
     installation, MacOS X 10.5.4 and MacTeX 2007),
