@@ -234,8 +234,21 @@
     ]{hyperref}
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used
-\renewcommand\backrefpagesname{\(\rightarrow\) pages}
-\renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
+%%
+%% \renewcommand*{\backref}[1]{}% for backref < 1.33 necessary
+\renewcommand*{\backrefsep}{,~}%
+\renewcommand*{\backreftwosep}{,~}% ', and~'
+\renewcommand*{\backreflastsep}{,~}% ' and~'
+\renewcommand*{\backrefalt}[4]{%
+\ifcase #1 %
+No citations.%
+\or
+\(\rightarrow\) page #2%
+\else
+\(\rightarrow\) pages #2%
+\fi
+}
+
 
 %% The following uses most defaults, which causes hyperlinks to be
 %% surrounded by colourful boxes; the colours are only visible in
