@@ -1,5 +1,4 @@
-ubcdiss -- a dissertation template for LaTeX
-============================================
+# `ubcdiss` &ndash; a dissertation template for LaTeX
 
 This distribution provides a LaTeX template for writing a dissertation
 conformant with UBC's specifications (as of Oct 2010).  The template
@@ -13,8 +12,7 @@ and [`intro.tex`](intro.tex).  [`diss.tex`](diss.tex) is the
 main file but all the content is contained in the other files which
 are included from [`diss.tex`](diss.tex) using `\include`.
 
-Note that this is only a template: you'll likely need to add
-additional packages to manage the particular quirks required for
+You will almost certainly need to use additional LaTeX packages for
 your dissertation.  There are some pointers in [`diss.tex`](diss.tex)
 and [`doc.pdf`](doc.pdf) to useful packages for handling common
 problems/requirements.  You may need to manually install these for
@@ -27,17 +25,12 @@ may change.  You should review the GPS
 and [_Formatting Requirements_](http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/formatting-requirements).  GPS is very lenient with
 font choice, as long as the fonts are used consistently.
 
-I developed this template independently from Michael Forbes's
-`ubcthesis.cls`/`genthesis.cls`.  Forbes' class appears to be a heavily
-modified version of some other LaTeX class and suffers from
-compatibility problems with some LaTeX packages from my experience
-acting as a LaTeX guru to other students.   My template's document
-class instead builds on top of the standard LaTeX book class, which
-ensures much better compatibility with standard LaTeX packages.
-The functionality is implemented using the commonly available
-packages found in most LaTeX distributions such as MacTeX, MikTeX,
-and TeXLive.  My thanks are owed to the countless volunteers who
-write and maintain the many TeX packages!
+This template's document class instead builds on top of the standard
+LaTeX book class, which should ensure much better compatibility with
+standard LaTeX packages.  The functionality is implemented using
+the commonly available packages found in most LaTeX distributions
+such as MacTeX, MikTeX, and TeXLive.  My thanks are owed to the
+countless volunteers who write and maintain the many TeX packages!
 
 Please let me know if GPS requires you to make formatting or
 organization changes: I'll fold those changes into the template for
