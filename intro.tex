@@ -193,6 +193,9 @@ on the bibliography style (described in the next section).
 The \verb+\citet+ variant is used when the author names form
 an object in the sentence, whereas the \verb+\citep+ variant
 is used for parenthetic references, more like an end-note.
+Use \verb+\nocite+ to include a citation in the bibliography
+but without an actual reference.
+\nocite{rowling-1997-hpps}
 \begin{table}
 \caption{Available \texttt{cite} variants; the exact citation style
     depends on whether the bibliography style is numeric or author-year.}
@@ -380,9 +383,9 @@ of symbols and accented characters is available at:
 \section{Changing Page Widths and Heights}
 
 The \class{ubcdiss} class is based on the standard \LaTeX\ \class{book}
-class that selects a line-width to carry approximately 66~characters
-per line.  This character density is claimed to have a pleasing
-appearance and also supports more rapid
+class~\cite{lamport-1994-ladps} that selects a line-width to carry
+approximately 66~characters per line.  This character density is
+claimed to have a pleasing appearance and also supports more rapid
 reading~\cite{bringhurst-2002-teots}.  I would recommend that you
 not change the line-widths!
 

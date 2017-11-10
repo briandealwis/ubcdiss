@@ -235,19 +235,23 @@
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used
 %%
-%% \renewcommand*{\backref}[1]{}% for backref < 1.33 necessary
+%% Change \nocitations if you'd like some text shown where there
+%% are no citations found (e.g., pulled in with \nocite{xxx})
+\newcommand{\nocitations}{\relax}
+%%\newcommand{\nocitations}{No citations}
+%%
+%\renewcommand*{\backref}[1]{}% necessary for backref < 1.33
 \renewcommand*{\backrefsep}{,~}%
 \renewcommand*{\backreftwosep}{,~}% ', and~'
 \renewcommand*{\backreflastsep}{,~}% ' and~'
 \renewcommand*{\backrefalt}[4]{%
-\ifcase #1 %
-\textcolor{greytext}{No citations.}%
+\textcolor{greytext}{\ifcase #1%
+\nocitations%
 \or
-\textcolor{greytext}{\(\rightarrow\) page} #2%
+\(\rightarrow\) page #2%
 \else
-\textcolor{greytext}{\(\rightarrow\) pages} #2%
-\fi
-}
+\(\rightarrow\) pages #2%
+\fi}}
 
 
 %% The following uses most defaults, which causes hyperlinks to be
