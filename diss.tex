@@ -241,11 +241,11 @@
 \renewcommand*{\backreflastsep}{,~}% ' and~'
 \renewcommand*{\backrefalt}[4]{%
 \ifcase #1 %
-No citations.%
+\textcolor{greytext}{No citations.}%
 \or
-\(\rightarrow\) page #2%
+\textcolor{greytext}{\(\rightarrow\) page} #2%
 \else
-\(\rightarrow\) pages #2%
+\textcolor{greytext}{\(\rightarrow\) pages} #2%
 \fi
 }
 
