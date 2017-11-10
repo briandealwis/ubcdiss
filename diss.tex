@@ -234,8 +234,21 @@
     ]{hyperref}
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used
-\renewcommand\backrefpagesname{\(\rightarrow\) pages}
-\renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
+%%
+%% \renewcommand*{\backref}[1]{}% for backref < 1.33 necessary
+\renewcommand*{\backrefsep}{,~}%
+\renewcommand*{\backreftwosep}{,~}% ', and~'
+\renewcommand*{\backreflastsep}{,~}% ' and~'
+\renewcommand*{\backrefalt}[4]{%
+\ifcase #1 %
+\textcolor{greytext}{No citations.}%
+\or
+\textcolor{greytext}{\(\rightarrow\) page} #2%
+\else
+\textcolor{greytext}{\(\rightarrow\) pages} #2%
+\fi
+}
+
 
 %% The following uses most defaults, which causes hyperlinks to be
 %% surrounded by colourful boxes; the colours are only visible in
@@ -339,36 +352,40 @@
 \include{abstract}
 \cleardoublepage
 
-%    3. Preface
+%    3. Lay Summary (Effective May 2017, mandatory - maximum 150 words)
+\include{laysummary}
+\cleardoublepage
+
+%    4. Preface
 \include{preface}
 \cleardoublepage
 
-%    4. Table of contents (mandatory - list all items in the preliminary pages
+%    5. Table of contents (mandatory - list all items in the preliminary pages
 %    starting with the abstract, followed by chapter headings and
 %    subheadings, bibliographies and appendices)
 \tableofcontents
 \cleardoublepage	% required by tocloft package
 
-%    5. List of tables (mandatory if thesis has tables)
+%    6. List of tables (mandatory if thesis has tables)
 \listoftables
 \cleardoublepage	% required by tocloft package
 
-%    6. List of figures (mandatory if thesis has figures)
+%    7. List of figures (mandatory if thesis has figures)
 \listoffigures
 \cleardoublepage	% required by tocloft package
 
-%    7. List of illustrations (mandatory if thesis has illustrations)
-%    8. Lists of symbols, abbreviations or other (optional)
+%    8. List of illustrations (mandatory if thesis has illustrations)
+%    9. Lists of symbols, abbreviations or other (optional)
 
-%    9. Glossary (optional)
+%   10. Glossary (optional)
 \input{glossary}	% always input, since other macros may rely on it
 
 \textspacing		% begin one-half or double spacing
 
-%   10. Acknowledgements (optional)
+%   11. Acknowledgements (optional)
 \include{ack}
 
-%   11. Dedication (optional)
+%   12. Dedication (optional)
 
 % Body of Thesis (not all sections may apply)
 \mainmatter
