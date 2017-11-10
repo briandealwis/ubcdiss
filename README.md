@@ -6,30 +6,30 @@ conformant with UBC's specifications (as of Oct 2010).  The template
 uses only packages available in most LaTeX distributions such as
 MacTeX, MikTeX, and TeXLive. 
 
-The template has some documentation in doc.pdf.  This documentation
-is itself written using the template, and the content is found in
-ack.tex, glossary.tex, and intro.tex.  diss.tex is the main file
-but all the content is contained in the other files which are included
-from diss.tex using \include. 
+The template has some documentation in [`doc.pdf`](doc.pdf).  This
+documentation is itself written using the template, and the content
+is found in [`ack.tex`](ack.tex), [`glossary.tex`](glossary.tex),
+and [`intro.tex`](intro.tex).  [`diss.tex`](diss.tex) is the
+main file but all the content is contained in the other files which
+are included from [`diss.tex`](diss.tex) using `\include`.
 
 Note that this is only a template: you'll likely need to add
 additional packages to manage the particular quirks required for
-your dissertation.  There are some pointers in diss.tex and doc.pdf
-to useful packages for handling common problems/requirements.  You
-may need to manually install these for your distribution; teTeX in
-particular seems to ship with a much smaller package base.
+your dissertation.  There are some pointers in [`diss.tex`](diss.tex)
+and [`doc.pdf`](doc.pdf) to useful packages for handling common
+problems/requirements.  You may need to manually install these for
+your distribution; teTeX in particular seems to ship with a much
+smaller package base.
 
 GPS has very strict formatting requirements, and these requirements
-may change.  You should review the various GPS Thesis Specifications
-and Formatting Requirements.  GPS is very lenient with font choice,
-as long as the fonts are used consistently.
-
-    http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/structure-ubc-theses-dissertations
-    http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/formatting-requirements
+may change.  You should review the GPS
+[_Thesis Specifications_](http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/structure-ubc-theses-dissertations)
+and [_Formatting Requirements_](http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/formatting-requirements).  GPS is very lenient with
+font choice, as long as the fonts are used consistently.
 
 I developed this template independently from Michael Forbes's
-ubcthesis.cls/genthesis.cls.  Forbes' class appears to be a heavily
-a modified version of some other LaTeX class and suffers from
+`ubcthesis.cls`/`genthesis.cls`.  Forbes' class appears to be a heavily
+modified version of some other LaTeX class and suffers from
 compatibility problems with some LaTeX packages from my experience
 acting as a LaTeX guru to other students.   My template's document
 class instead builds on top of the standard LaTeX book class, which
@@ -49,7 +49,7 @@ really need to find a local LaTeX wizard. Before reporting a problem,
 please ensure that:
 
  1. you have the latest version of the template (see the abstract
-    in doc.pdf),
+    in [`doc.pdf`](doc.pdf)),
  2. you are using the latest version of your TeX distribution,
  2. your question isn't answered in the FAQ file, and
  3. you've exhausted your local LaTeX wizard's help.  Tip: You can
@@ -61,7 +61,7 @@ When reporting a problem BE SURE TO INCLUDE:
  2. details on the operating system and TeX distribution you are using 
     (e.g., Windows XP and MikTeX 2.5, SuSE Linux 10 and its bundled
     installation, MacOS X 10.5.4 and MacTeX 2007),
- 3. the log file (likely called diss.log).
+ 3. the log file (likely called `diss.log`).
 
 Brian de Alwis
 bsd@acm.org
