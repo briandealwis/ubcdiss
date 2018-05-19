@@ -320,6 +320,19 @@
 \submissionmonth{April}
 \submissionyear{2192}
 
+% details of your examining committee
+\examiningcommittee{John Smith, Materials Engineering}{Supervisor}
+\examiningcommittee{Mary Maker, Materials Engineering}%
+    {Supervisory Committee Member}
+\examiningcommittee{Nebulous Name, Department}{Supervisory Committee Member}
+\examiningcommittee{Magnus Monolith, Other Department}{Additional Examiner}
+
+% details of your supervisory committee
+\supervisorycommittee{Ira Crater, Materials Engineering}%
+    {Supervisory Committee Member}
+\supervisorycommittee{Adeline Long, \textsc{CEO} of Aerial Machine
+    Transportation, Inc.}{Supervisory Committee Member}
+
 %% hyperref package provides support for embedding meta-data in .PDF
 %% files
 \hypersetup{
@@ -352,44 +365,48 @@
 %    1. Title page (mandatory)
 \maketitle
 
-%    2. Abstract (mandatory - maximum 350 words)
+%    2. Committee page (mandatory): lists supervisory committee and,
+%    if applicable, the examining committee
+\makecommitteepage
+
+%    3. Abstract (mandatory - maximum 350 words)
 \include{abstract}
 \cleardoublepage
 
-%    3. Lay Summary (Effective May 2017, mandatory - maximum 150 words)
+%    4. Lay Summary (Effective May 2017, mandatory - maximum 150 words)
 \include{laysummary}
 \cleardoublepage
 
-%    4. Preface
+%    5. Preface
 \include{preface}
 \cleardoublepage
 
-%    5. Table of contents (mandatory - list all items in the preliminary pages
+%    6. Table of contents (mandatory - list all items in the preliminary pages
 %    starting with the abstract, followed by chapter headings and
 %    subheadings, bibliographies and appendices)
 \tableofcontents
 \cleardoublepage	% required by tocloft package
 
-%    6. List of tables (mandatory if thesis has tables)
+%    7. List of tables (mandatory if thesis has tables)
 \listoftables
 \cleardoublepage	% required by tocloft package
 
-%    7. List of figures (mandatory if thesis has figures)
+%    8. List of figures (mandatory if thesis has figures)
 \listoffigures
 \cleardoublepage	% required by tocloft package
 
-%    8. List of illustrations (mandatory if thesis has illustrations)
-%    9. Lists of symbols, abbreviations or other (optional)
+%    9. List of illustrations (mandatory if thesis has illustrations)
+%   10. Lists of symbols, abbreviations or other (optional)
 
-%   10. Glossary (optional)
+%   11. Glossary (optional)
 \input{glossary}	% always input, since other macros may rely on it
 
 \textspacing		% begin one-half or double spacing
 
-%   11. Acknowledgements (optional)
+%   12. Acknowledgements (optional)
 \include{ack}
 
-%   12. Dedication (optional)
+%   13. Dedication (optional)
 
 % Body of Thesis (not all sections may apply)
 \mainmatter

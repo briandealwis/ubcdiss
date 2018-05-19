@@ -32,7 +32,7 @@
 %%   twoside          insert blank pages as required for double-sided printing
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ubcdiss}[2008/04/06]
+\ProvidesClass{ubcdiss}[2018/05/18]
 
 % everybody loves calc
 \RequirePackage{calc}
@@ -184,8 +184,8 @@
 \makeatletter
 
 % defaults
-\newcommand{\@subtitle}{}
-\newcommand{\@previousdegrees}{}
+\newcommand*{\@subtitle}{}
+\newcommand*{\@previousdegrees}{}
 \newcommand{\@degreetitle}{%
     \ClassError{ubcdiss}{Missing degree title}{%
 	Specify \protect\degreetitle\space in your dissertation
@@ -193,7 +193,7 @@
     \emph{missing degree title}}
 \newcommand{\@institution}{The University of British Columbia}
 \newcommand{\f@culty}{Graduate and Postdoctoral Studies}
-\newcommand{\dep@rtment}{}
+\newcommand*{\dep@rtment}{}
 \newcommand{\c@mpus}{%
     \ClassError{ubcdiss}{Missing campus name}{%
 	Specify \protect\campus\{\}\space in your dissertation
@@ -278,5 +278,36 @@
     \pagestyle{plain}
     \renewcommand{\frontmatter}{%
 	\ClassError{ubcdiss}{frontmatter should not be used}}
+}
+
+\newcommand*{\ex@miners}{}
+\newcommand*{\@supervisory}{}
+\newcommand{\examiningcommittee}[2]{\@addto{ex@miners}{%
+    \par\medskip\noindent#1\\\emph{#2}}}
+    %\noindent#1\\\emph{#2}\\[0.75em]}}
+\newcommand{\supervisorycommittee}[2]{\@addto{@supervisory}{%
+    \par\medskip\noindent#1\\\emph{#2}}}
+    %\noindent#1\\\emph{#2}\\[0.75em]}}
+\newcommand{\makecommitteepage}{%
+    \begin{singlespace}
+    \noindent The following individuals certify that they have read,
+    and recommend to the Faculty of Graduate and Postdoctoral Studies
+    for acceptance, the thesis entitled:\\[1em]
+        {\large \textbf{\@title}}\\[1em]
+    submitted by 
+	\textbf{\@author}
+    in partial fulfillment of the requirements for the degree of
+	\textbf{\@degreetitle}
+    in
+	\textbf{\ifx\dep@rtment\empty\f@culty\else\dep@rtment\fi}.%
+    \par\bigskip%
+    \noindent\textbf{Examining Committee:}%
+    \ex@miners%
+    \ifx\@supervisory\empty\relax\else%
+        \par\bigskip%
+        \noindent\textbf{Additional Supervisory Committee Members:}%
+        \@supervisory\fi%
+    \end{singlespace}
+    \cleardoublepage
 }
 
