@@ -1,9 +1,14 @@
 # `ubcdiss` &ndash; a dissertation template for LaTeX
 
-This distribution provides a LaTeX template for writing a dissertation
-conformant with UBC's specifications (as of Oct 2010).  The template
-uses only packages available in most LaTeX distributions such as
-MacTeX, MikTeX, and TeXLive. 
+This distribution provides a community-maintained LaTeX template
+for writing a dissertation that conforms with UBC Graduate and Postdoctoral Studies (GPS) specifications. 
+
+This template provides a document class builds on top of the standard
+LaTeX _book_ class to ensure much better compatibility with
+standard LaTeX packages.  The functionality is implemented using
+the commonly available packages found in most LaTeX distributions
+such as [MacTeX](http://www.tug.org/mactex/), [MikTeX](https://miktex.org), and [TeXLive](https://www.tug.org/texlive/).
+(Give thanks to the countless volunteers who write and maintain these many TeX packages!)
 
 The template has some documentation in [`doc.pdf`](doc.pdf).  This
 documentation is itself written using the template, and the content
@@ -23,29 +28,19 @@ GPS has very strict formatting requirements, and these requirements
 may change.  You should review the GPS
 [_Thesis Specifications_](http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/structure-ubc-theses-dissertations)
 and [_Formatting Requirements_](http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/formatting-requirements).  GPS is very lenient with
-font choice, as long as the fonts are used consistently.
+font choice providing the fonts are used consistently.
+Please [open an issue](https://github.com/briandealwis/ubcdiss/issues/new)
+if GPS requires you to make formatting or organization changes:
+I'll fold those changes into the template for future students.
 
-This template's document class instead builds on top of the standard
-LaTeX book class, which should ensure much better compatibility with
-standard LaTeX packages.  The functionality is implemented using
-the commonly available packages found in most LaTeX distributions
-such as MacTeX, MikTeX, and TeXLive.  My thanks are owed to the
-countless volunteers who write and maintain the many TeX packages!
-
-Please let me know if GPS requires you to make formatting or
-organization changes: I'll fold those changes into the template for
-future students.
-
-Please feel free to contact me should you have problems with the
-template.  I can't really help with general LaTeX problems: you
-really need to find a local LaTeX wizard. Before reporting a problem,
-please ensure that:
+Please report problems with the
+template by [opening an issue on Github](https://github.com/briandealwis/ubcdiss/issues/new).  Before reporting a problem, please ensure that:
 
  1. you have the latest version of the template (see the abstract
     in [`doc.pdf`](doc.pdf)),
  2. you are using the latest version of your TeX distribution,
- 2. your question isn't answered in the FAQ file, and
- 3. you've exhausted your local LaTeX wizard's help.  Tip: You can
+ 3. your question isn't answered in [the FAQ file](FAQ.md), and
+ 4. you've exhausted your local LaTeX wizard's help.  Tip: You can
     often find your own wizard by buying beer for a CS grad at Koerner's.
 
 When reporting a problem BE SURE TO INCLUDE:
@@ -55,7 +50,3 @@ When reporting a problem BE SURE TO INCLUDE:
     (e.g., Windows XP and MikTeX 2.5, SuSE Linux 10 and its bundled
     installation, MacOS X 10.5.4 and MacTeX 2007),
  3. the log file (likely called `diss.log`).
-
-Brian de Alwis
-bsd@acm.org
-
