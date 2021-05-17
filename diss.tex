@@ -221,21 +221,30 @@
 %%
 %% Generally hyperref should appear after most other packages
 
-%% The following puts hyperlinks in very faint grey boxes.
 %% The `pagebackref' causes the references in the bibliography to have
 %% back-references to the citing page; `backref' puts the citing section
 %% number.  See further below for other examples of using hyperref.
 %% 2009/12/09: now use `linktocpage' (Jacek Kisynski): GPS now prefers
 %%   that the ToC, LoF, LoT place the hyperlink on the page number,
 %%   rather than the entry text.
-\usepackage[bookmarks,bookmarksnumbered,%
+\ifgpscopy
+  % GPS requires that weblinks should be dark blue, which looks a bit
+  % odd in printed form.
+  % https://www.grad.ubc.ca/current-students/dissertation-thesis-preparation/fonts-print
+  \usepackage[bookmarks,bookmarksnumbered,%
+     pagebackref,linktocpage,%
+     colorlinks=true,%
+     linkcolor=black,%
+     urlcolor=blue,%
+     citecolor=black%
+     ]{hyperref}
+\else
+  %% The following puts hyperlinks in very faint grey boxes (in pdf only).
+  \usepackage[bookmarks,bookmarksnumbered,%
+    pagebackref,linktocpage%
     allbordercolors={0.8 0.8 0.8},%
-    pagebackref,linktocpage,%
-    colorlinks=true,%
-    linkcolor=black,%
-    urlcolor=blue,%
-    citecolor=black%
     ]{hyperref}
+\fi
 %% The following change how the the back-references text is typeset in a
 %% bibliography when `backref' or `pagebackref' are used
 %%
