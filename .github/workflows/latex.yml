@@ -1,6 +1,8 @@
 name: ubcdiss CI
 on:
   push:
+    branches-ignore:
+      - master
   pull_request:
   workflow_dispatch:
 
@@ -12,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile LaTeX document
         run: |
-          docker run -v $(pwd):/workdir texlive/texlive latexmk diss.tex
+          docker run -v $(pwd):/workdir -w /workdir texlive/texlive latexmk diss.tex
