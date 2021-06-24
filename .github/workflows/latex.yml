@@ -1,0 +1,14 @@
+name: ubcdiss CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        run: |
+          docker run --rm -it -v $(pwd):/workdir texlive/texlive latexmk diss.tex
