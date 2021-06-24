@@ -12,6 +12,15 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+      - name: Verify default is gpscopy
+        run: |
+          if ! grep 'documentclass.*gpscopy' diss.tex; then echo missing gpscopy; exit 1; fi 
       - name: Compile LaTeX document
         run: |
-          docker run -v $(pwd):/workdir -w /workdir texlive/texlive latexmk diss.tex
+          docker run -v $(pwd):/workdir -w /workdir texlive/texlive latexmk -pdf diss.tex
+      - name: Compile as non-gps LaTeX document
+        run: |
+          sed '/documentclass/s/gpscopy,//' diss.tex > diss.modded && mv diss.modded diss.tex
+          docker run -v $(pwd):/workdir -w /workdir texlive/texlive latexmk -pdf diss.tex
+
+
